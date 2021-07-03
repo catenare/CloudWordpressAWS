@@ -5,6 +5,7 @@
 * Wordpress site is hosted on AWS in a container service.
 ## Basic running
 *  `docker-compose -f docker-wordpress-compose.yml -p wordpress-image up` # Runs generic wordpress image
+* `docker-compose up`
 ## Resources
 * [Introduction to Wordpress and Composer](https://www.pmg.com/blog/composer-and-wordpress/?cn-reloaded=1)
 * [wordpress with Composer Support](https://github.com/johnpbloch/wordpress)

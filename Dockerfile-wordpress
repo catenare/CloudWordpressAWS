@@ -21,6 +21,8 @@ RUN set -ex; \
   libmagickwand-dev \
   libpng-dev \
   libzip-dev \
+  wget \
+  git \
   ; \
   \
   docker-php-ext-configure gd \
@@ -32,8 +34,6 @@ RUN set -ex; \
   exif \
   gd \
   mysqli \
-  wget \
-  git \
   zip \
   ; \
   # https://pecl.php.net/package/imagick

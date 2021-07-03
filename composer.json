@@ -41,7 +41,7 @@
     "wpackagist-plugin/akismet": ">=4",
     "wpackagist-plugin/jetpack": ">=5",
     "wpackagist-plugin/cloudinary-image-management-and-manipulation-in-the-cloud-cdn": ">=1",
-    "humanmade/s3-uploads": ">=2",
+    "humanmade/s3-uploads": ">=3",
     "wpackagist-plugin/wp-php-console": ">=1"
   },
   "require-dev": {
