@@ -1,4 +1,5 @@
 # Generic Wordpress Configuration using Docker
+* Run local environment
 ## Overview
 * Uses **composer.json** to manage Wordpress as a package.
 * Wordpress site is hosted on AWS in a container service.
