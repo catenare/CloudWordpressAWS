@@ -1,0 +1,42 @@
+version: "3"
+services:
+  wordpress:
+    image: wordpress:php8.0-apache
+    depends_on:
+      - wordpressdb
+    ports:
+      - "9090:80"
+    deploy:
+        restart_policy:
+            condition: any
+            delay: 5s
+            max_attempts: 3
+            window: 120s
+    volumes:
+      - wordpress:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+      - AUTH_KEY=${AUTH_KEY}
+      - SECURE_AUTH_KEY=${SECURE_AUTH_KEY}
+      - LOGGED_IN_KEY=${LOGGED_IN_KEY}
+      - NONCE_KEY=${NONCE_KEY}
+      - AUTH_SALT=${AUTH_SALT}
+      - SECURE_AUTH_SALT=${SECURE_AUTH_SALT}
+      - LOGGED_IN_SALT=${LOGGED_IN_SALT}
+      - NONCE_SALT=${NONCE_SALT}
+      - MY_KEY=${MY_KEY}
+      - WP_DEBUG=${WP_DEBUG}
+  wordpressdb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - wordpress:/var/lib/mariadb
+volumes:
+  wordpress: {}
