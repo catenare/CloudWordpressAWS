@@ -114,7 +114,7 @@ RUN set -ex; \
 VOLUME /var/www/html
 WORKDIR /var/www/html
 
-COPY htacces /var/ww/html/.htacces
+COPY htaccess /var/ww/html/.htacces
 
 RUN set -ex; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
@@ -122,6 +122,6 @@ RUN set -ex; \
   composer clearcache;
 
 COPY docker-entrypoint.sh /usr/local/bin/
-EXPOSE 9000
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
