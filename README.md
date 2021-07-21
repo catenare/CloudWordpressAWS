@@ -1,4 +1,5 @@
 # Generic Wordpress Configuration using Docker
+* Trying to setup using Apache
 * Run local environment
 ## Overview
 * Uses **composer.json** to manage Wordpress as a package.
