@@ -1,6 +1,10 @@
 # Generic Wordpress Configuration using Docker
 * Trying to setup using Apache
 * Run local environment
+
+## Setup Docker on Ubuntu
+* https://docs.docker.com/engine/install/ubuntu/
+* https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 ## Overview
 * Uses **composer.json** to manage Wordpress as a package.
 * Wordpress site is hosted on AWS in a container service.
