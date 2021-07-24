@@ -1,4 +1,6 @@
-FROM php:8.0-apache
+FROM php:8.0.7-apache
+
+ENV APACHE_DOCUMENT_ROOT /var/www/html/wordpress
 
 # persistent dependencies
 RUN set -eux; \
@@ -98,23 +100,20 @@ RUN set -eux; \
   # (replace all instances of "%h" with "%a" in LogFormat)
   find /etc/apache2 -type f -name '*.conf' -exec sed -ri 's/([[:space:]]*LogFormat[[:space:]]+"[^"]*)%h([^"]*")/\1%a\2/g' '{}' +
 
-WORKDIR /usr/src/html
+WORKDIR /var/www/html
 RUN set -ex; \
-  chown -R www-data:www-data /usr/src/html; \
+  chown -R www-data:www-data /var/www/html; \
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
   php composer-setup.php --install-dir=/usr/local/bin --filename=composer --quiet;
 
-COPY composer.json /usr/src/html
-COPY wp-config.php /usr/src/html
+COPY composer.json /var/www/html
+COPY wp-config.php /var/www/html
 
 RUN set -ex; \
   composer install --no-dev -vvv;\
-  chown -R www-data:www-data /usr/src/html;
+  chown -R www-data:www-data /var/www/html;
 
-VOLUME /var/www/html
-WORKDIR /var/www/html
-
-COPY htaccess /var/ww/html/.htacces
+COPY htaccess /var/www/html/.htacces
 
 RUN set -ex; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
@@ -122,6 +121,9 @@ RUN set -ex; \
   composer clearcache;
 
 COPY docker-entrypoint.sh /usr/local/bin/
+
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]

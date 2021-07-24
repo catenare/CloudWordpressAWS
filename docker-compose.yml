@@ -4,14 +4,12 @@ services:
     image: nziswano:wordpress
     build:
       context: .
-      dockerfile: Dockerfile-wordpress
-    container_name: wordpress
+      dockerfile: Dockerfile
+    container_name: nziswano-wordpress
     depends_on:
       - wordpressdb
     ports:
       - "9090:80"
-    volumes:
-       - wordpress:/var/www/html
     environment:
       - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
       - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
@@ -34,7 +32,3 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    volumes:
-      - wordpress:/var/lib/mariadb
-volumes:
-  wordpress:
