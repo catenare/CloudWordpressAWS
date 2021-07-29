@@ -2,6 +2,8 @@
 * Trying to setup using Apache
 * Run local environment
 
+## Run local environment
+* `docker-compose up --build`
 ## Setup Docker on Ubuntu
 * https://docs.docker.com/engine/install/ubuntu/
 * https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
