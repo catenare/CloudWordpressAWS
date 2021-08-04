@@ -2,6 +2,7 @@
 * Trying to setup using Apache
 * Run local environment
 
+* **Include 'ecr deploy' in commit message to deploy to aws ecr**
 ## Run local environment
 * `docker-compose up --build`
 ## Setup Docker on Ubuntu
