@@ -1,52 +1,9 @@
-# Generic Wordpress Configuration using Docker
-* Trying to setup using Apache
-* Run local environment
+# Wordpress Configuration with **composer.json** and **Docker**
 
-* **Include 'ecr deploy' in commit message to deploy to aws ecr**
-## Run local environment
-* `docker-compose up --build`
-## Setup Docker on Ubuntu
-* https://docs.docker.com/engine/install/ubuntu/
-* https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-## Overview
-* Uses **composer.json** to manage Wordpress as a package.
-* Wordpress site is hosted on AWS in a container service.
-## Basic running
-*  `docker-compose -f docker-wordpress-compose.yml -p wordpress-image up` # Runs generic wordpress image
-* `docker-compose up`
-## Resources
-* [Introduction to Wordpress and Composer](https://www.pmg.com/blog/composer-and-wordpress/?cn-reloaded=1)
-* [wordpress with Composer Support](https://github.com/johnpbloch/wordpress)
-* [WordPress Packagist](https://wpackagist.org/) - WordPress Packages compatible with Composer
-* [Plugin to Store Uploads on Amazon S3](https://github.com/humanmade/S3-Uploads)
-* [Cloudinary WordPress Integration](https://cloudinary.com/documentation/wordpress_integration)
-### AWS Services
-* [Amazon Elastic Container Registry](https://aws.amazon.com/ecr/)
-* [Amazon Fargate](https://aws.amazon.com/fargate/) - Docker container service
-* [Amazon Aurora Serverless](https://aws.amazon.com/rds/aurora/serverless/?nc=sn&loc=2&dn=6) - Database Service
-
-## Instructions
-### Local Testing
-* Create **.env** file. Look at example.env
-  * To generate custom salts `openssl rand -base64 35` - Will generate 35 character custom salts.
-* `export DOCKER_BUILDKIT=1` - Will parallize the build of the docker image.
-* Start Wordpress and Nginx. `docker-compose up`
-* Start Mysql Server> `docker run --env-file .env --name wordpressdb --network wordpress_cloud_default -v "$PWD/database":/var/lib/mysql -p 3306:3306 -p 33060:33060 mysql:5`
-* Connect to server at `http://localhost:7000`
-* Should see the Wordpress Admin install page.
-
-### Deploy to Fargate Service
-* Need to create **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY** secrets in Github Repo.
-* Repo contains aws.yml file for uploading image to Amazon ECR.
-* Checkout branch *deploy*
-* Merge updates into *deploy*
-* Push *deploy* to Github. Will automatically build the docker image and push it to AWS ECR.
-
-## Development
-### Complete environment including MySQL Server as part of compose file.
-  * Change **WORDPRESS_DB_HOST** in **.env** file to `WORDPRESS_DB_HOST=localhost:/var/run/mysqld/mysqld.sock`
-  * `docker-compose -f dev-docker-compose.yml up` - Will build the local container and configure with NGINX and MySQL Server. Edit .env file accordingly.
-
-* siteadmin
-* User: SiteAdmin
-* Pass: lB4CFZWMYKcDdzZk8g
+## Using Amazon Lightsail instance with Ubuntu as development box
+* Setup Docker on Ubuntu
+  * https://docs.docker.com/engine/install/ubuntu/
+  * https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+* Run instance of Wordpress with docker
+  * `docker-compose up --build`
+  * Access server at port 9090 
