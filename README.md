@@ -7,3 +7,5 @@
 * Run instance of Wordpress with docker
   * `docker-compose up --build`
   * Access server at port 9090 
+
+  * Setup System Parameters with AWS
