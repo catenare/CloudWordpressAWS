@@ -1,5 +1,5 @@
 {
-  "name": "next45/wordpress-demo",
+  "name": "nziswano/wordpress-docker",
   "description": "Dockerized Wordpress",
   "keywords": [
     "wordpress",
@@ -16,13 +16,13 @@
     },
     {
       "name": "Johan Martin",
-      "homepage": "http://www.docfoxapp.com",
-      "email": "johan@next45.co",
+      "homepage": "https://www.nziswano.co.za",
+      "email": "martin.johan@nziswano.co.za",
       "role": "developer"
     }
   ],
   "support": {
-    "email": "info@docfoxapp.com"
+    "email": "info@nziswano.co.za"
   },
   "extra": {
     "wordpress-install-dir": "wordpress",
@@ -38,19 +38,19 @@
   "require": {
     "php": ">=8",
     "johnpbloch/wordpress": ">=5",
-    "wpackagist-plugin/akismet": ">=4",
-    "wpackagist-plugin/jetpack": ">=5",
-    "wpackagist-plugin/cloudinary-image-management-and-manipulation-in-the-cloud-cdn": ">=1",
-    "wpackagist-plugin/wp-php-console": ">=1"
+    "wpackagist-plugin/akismet": "*",
+    "wpackagist-plugin/jetpack": "*",
+    "wpackagist-plugin/cloudinary-image-management-and-manipulation-in-the-cloud-cdn": ">=2.7.5",
+    "wp-cli/wp-cli-bundle": "*"
   },
   "require-dev": {
-    "wpackagist-plugin/wordpress-reset": ">=1",
-    "wpackagist-plugin/wordpress-importer": ">=0.6",
-    "wpackagist-plugin/demo-data-creator": ">=1",
-    "wpackagist-plugin/debug": ">=1",
-    "wpackagist-plugin/debug-bar-console": ">=0.3",
+    "wpackagist-plugin/wordpress-reset": "*",
+    "wpackagist-plugin/wordpress-importer": "*",
+    "wpackagist-plugin/demo-data-creator": "*",
+    "wpackagist-plugin/debug": "*",
+    "wpackagist-plugin/debug-bar-console": "*",
     "phpmd/phpmd": "@stable",
-    "phpunit/phpunit": ">=6"
+    "phpunit/phpunit": "*"
   },
   "repositories": [
     {
