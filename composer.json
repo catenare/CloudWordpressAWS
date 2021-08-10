@@ -38,6 +38,7 @@
   "require": {
     "php": ">=8",
     "johnpbloch/wordpress": ">=5",
+    "woocommerce/woocommerce": "@stable",
     "wpackagist-plugin/akismet": "*",
     "wpackagist-plugin/jetpack": "*",
     "wpackagist-plugin/cloudinary-image-management-and-manipulation-in-the-cloud-cdn": ">=2.7.5",
