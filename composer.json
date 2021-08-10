@@ -36,12 +36,11 @@
     }
   },
   "require": {
-    "php": ">=7",
+    "php": ">=8",
     "johnpbloch/wordpress": ">=5",
     "wpackagist-plugin/akismet": ">=4",
     "wpackagist-plugin/jetpack": ">=5",
     "wpackagist-plugin/cloudinary-image-management-and-manipulation-in-the-cloud-cdn": ">=1",
-    "humanmade/s3-uploads": ">=2",
     "wpackagist-plugin/wp-php-console": ">=1"
   },
   "require-dev": {
