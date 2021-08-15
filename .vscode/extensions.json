@@ -7,6 +7,16 @@
         "ms-azuretools.vscode-docker",
         "piotrpalarz.vscode-gitignore-generator",
         "amazonwebservices.aws-toolkit-vscode",
-        "github.vscode-pull-request-github"
+        "aws-amplify.aws-amplify-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "ms-python.vscode-pylance",
+        "kevinrose.vsc-python-indent",
+        "njqdev.vscode-python-typehint",
+        "gruntfuggly.todo-tree",
+        "visualstudioexptteam.vscodeintellicode",
+        "aliariff.auto-add-brackets",
+        "ms-python.gather",
+        "github.github-vscode-theme",
+        "vscodevim.vim"
     ]
 }
