@@ -1,0 +1,194 @@
+{
+    "Parameters": [
+        {
+            "Name": "/cms/wordpress/auth_key",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:11:14.006000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "AUTH_KEY",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/db_host",
+            "Type": "String",
+            "LastModifiedDate": "2021-09-04T11:55:47.063000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:root",
+            "Description": "DB_HOST",
+            "Version": 2,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/db_user",
+            "Type": "String",
+            "LastModifiedDate": "2021-09-04T11:56:46.270000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:root",
+            "Description": "DB_USER",
+            "Version": 2,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/logged_in_key",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:15:36.657000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "LOGGED_IN_KEY",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/logged_in_salt",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:21:36.833000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "LOGGED_IN_SALT",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/my_key",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:24:22.249000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "MY_KEY",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/mysql_password",
+            "Type": "SecureString",
+            "KeyId": "alias/aws/ssm",
+            "LastModifiedDate": "2021-09-04T11:57:21.963000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:root",
+            "Description": "MYSQL_PASSWORD",
+            "Version": 2,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/mysql_root_password",
+            "Type": "SecureString",
+            "KeyId": "alias/aws/ssm",
+            "LastModifiedDate": "2021-08-31T02:22:42.493000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "MYSQL_ROOT_PASSWORD",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/secure_auth_key",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:14:45.895000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "SECURE_AUTH_KEY",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/wp_debug",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:24:11.592000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "WP_DEBUG",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/auth_salt",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:18:21.854000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "AUTH_SALT",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/db_password",
+            "Type": "SecureString",
+            "KeyId": "alias/aws/ssm",
+            "LastModifiedDate": "2021-09-04T11:56:24.178000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:root",
+            "Description": "DB_PASSWORD",
+            "Version": 2,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/mysql_database",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:22:57.828000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "MYSQL_DATABASE",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/mysql_user",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:23:47.655000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "MYSQL_USER",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/nonce_key",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:17:38.323000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "NONCE_KEY",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/nonce_salt",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:22:01.707000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "NONCE_SALT",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        },
+        {
+            "Name": "/cms/wordpress/secure_auth_salt",
+            "Type": "String",
+            "LastModifiedDate": "2021-08-31T02:19:58.583000+02:00",
+            "LastModifiedUser": "arn:aws:iam::640532510768:user/nziswanodeveloper",
+            "Description": "SECURE_AUTH_SALT",
+            "Version": 1,
+            "Tier": "Standard",
+            "Policies": [],
+            "DataType": "text"
+        }
+    ]
+}
