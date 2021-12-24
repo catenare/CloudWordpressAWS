@@ -1,48 +1,82 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.205.2/containers/php-mariadb
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/php-mariadb
 // Update the VARIANT arg in docker-compose.yml to pick a PHP version
 {
-	"name": "PHP & MariaDB (Community)",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
-	"workspaceFolder": "/workspace",
-	
-	// Set *default* container specific settings.json values on container create.
-	"settings": { 
-		"sqltools.connections": [{
-			"name": "Container database",
-			"driver": "MariaDB",
-			"server": "localhost",
-			"previewLimit": 50,
-			"port": 3306,
-			"database": "mariadb",
-			"username": "root",
-			"password": "mariadb"
-		}]
-	},
+  "name": "PHP & MariaDB (Community)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
 
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"felixfbecker.php-debug",
-		"felixfbecker.php-intellisense",
-		"mrmlnc.vscode-apache",
-		"mtxr.sqltools",
-		"mtxr.sqltools-driver-mysql"
-	],
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "sqltools.connections": [
+      {
+        "name": "Container database",
+        "driver": "MariaDB",
+        "server": "localhost",
+        "previewLimit": 50,
+        "port": 3306,
+        "database": "mariadb",
+        "username": "root",
+        "password": "mariadb"
+      }
+    ]
+  },
 
-	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
-	"forwardPorts": [8080, 3306],
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "felixfbecker.php-debug",
+    "felixfbecker.php-intellisense",
+    "mrmlnc.vscode-apache",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-mysql",
+    "piotrpalarz.vscode-gitignore-generator",
+    "streetsidesoftware.code-spell-checker",
+    "naumovs.color-highlight",
+    "pranaygp.vscode-css-peek",
+    "batisteo.vscode-django",
+    "ms-azuretools.vscode-docker",
+    "mrmlnc.vscode-duplicate",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "ms-python.gather",
+    "github.copilot",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "ms-vsliveshare.vsliveshare-pack",
+    "eg2.vscode-npm-script",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "mechatroner.rainbow-csv",
+    "humao.rest-client",
+    "dannyconnell.split-html-attributes",
+    "albert.tabout",
+    "meganrogge.template-string-converter",
+    "ms-vscode.test-adapter-converter",
+    "hbenl.vscode-test-explorer",
+    "qcz.text-power-tools",
+    "visualstudioexptteam.vscodeintellicode",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml",
+    "mikestead.dotenv",
+    "wholroyd.jinja",
+    "pkief.material-icon-theme",
+    "vscode-icons-team.vscode-icons",
+    "bmewburn.vscode-intelephense-client",
+    "ikappas.phpcs",
+    "ikappas.composer"
+  ],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
+  // For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
+  "forwardPorts": [8080, 3306],
 
-	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode",
-	"features": {
-		"git": "latest",
-		"github-cli": "latest",
-		"azure-cli": "latest",
-		"sshd": "latest",
-		"homebrew": "latest"
-	}
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
+
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "vscode",
+  "features": {
+    "git": "latest",
+    "github-cli": "latest"
+  }
 }
