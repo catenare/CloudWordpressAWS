@@ -6,7 +6,7 @@
     "blog",
     "cms"
   ],
-  "type": "project",
+  "type": "wordpress-core",
   "homepage": "http://www.docfoxapp.com",
   "license": "GPL-2.0+",
   "authors": [
@@ -37,7 +37,7 @@
   },
   "require": {
     "php": ">=8",
-    "johnpbloch/wordpress": ">=5",
+    "johnpbloch/wordpress-core-installer": "^2.0",
     "woocommerce/woocommerce": "@stable",
     "wpackagist-plugin/akismet": "*",
     "wpackagist-plugin/jetpack": "*",
