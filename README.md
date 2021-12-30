@@ -28,3 +28,13 @@
   * Install nginx unit - https://unit.nginx.org
   * Setup mariadb
   *
+
+  ### Setup Wordpress with nginx unit
+  * https://www.nginx.com/blog/automating-installation-wordpress-with-nginx-unit-on-ubuntu/
+  * https://nucker.me/how-to-host-a-wordpress-site-in-docker-with-nginx/
+  * https://appwrk.com/how-to-set-up-dockerizing-wordpress-with-nginx-web-server
+  * Unit Wordpress - https://github.com/tippexs/unitwp
+  * https://www.dmuth.org/wordpress-5-in-docker-with-nginx-and-letsencrypt/
+  * https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
+  * https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose
+  
