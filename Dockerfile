@@ -24,6 +24,8 @@ RUN set -ex; \
   libpng-dev \
   libwebp-dev \
   libzip-dev \
+  wget \
+  git \
   ; \
   \
   docker-php-ext-configure gd \
@@ -129,7 +131,7 @@ RUN set -ex; \
   composer install --no-dev -vvv;\
   chown -R www-data:www-data /var/www/html;
 
-COPY htaccess /var/www/html/.htacces
+COPY htaccess /var/www/html/wordpress/.htacces
 
 RUN set -ex; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \

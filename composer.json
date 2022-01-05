@@ -32,13 +32,18 @@
       ],
       "wordpress/wp-content/themes/{$name}": [
         "type:wordpress-theme"
+      ],
+      "wordpress/wp-content/mu-plugins/{$name}": [
+        "type:wordpress-muplugin"
       ]
     }
   },
   "require": {
     "php": ">=8",
-    "johnpbloch/wordpress-core-installer": "^2.0",
-    "woocommerce/woocommerce": "@stable",
+    "composer/installers": "*",
+    "johnpbloch/wordpress-core-installer": "*",
+    "johnpbloch/wordpress-core": "*",
+    "wpackagist-plugin/woocommerce": "@stable",
     "wpackagist-plugin/akismet": "*",
     "wpackagist-plugin/jetpack": "*",
     "wpackagist-plugin/cloudinary-image-management-and-manipulation-in-the-cloud-cdn": ">=2.7.5",
