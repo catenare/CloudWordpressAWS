@@ -42,12 +42,7 @@
     "php": ">=8",
     "composer/installers": "*",
     "johnpbloch/wordpress-core-installer": "*",
-    "johnpbloch/wordpress-core": "*",
-    "wpackagist-plugin/woocommerce": "@stable",
-    "wpackagist-plugin/akismet": "*",
-    "wpackagist-plugin/jetpack": "*",
-    "wpackagist-plugin/cloudinary-image-management-and-manipulation-in-the-cloud-cdn": ">=2.7.5",
-    "wp-cli/wp-cli-bundle": "*"
+    "johnpbloch/wordpress-core": "*"
   },
   "require-dev": {
     "wpackagist-plugin/wordpress-reset": "*",
