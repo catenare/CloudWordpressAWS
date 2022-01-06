@@ -55,3 +55,50 @@ define('SECURE_AUTH_SALT', getenv('SECURE_AUTH_SALT'));
 define('LOGGED_IN_SALT',   getenv('LOGGED_IN_SALT'));
 define('NONCE_SALT',       getenv('NONCE_SALT'));
 define('MY_KEY',      	   getenv('MY_KEY'));
+/* Captcha Settings  */
+// define('CAPTCHA_SITE_KEY',  '');
+// define('CAPTCHA_SECRET',    '');
+// define('CAPTCHA_URL',       'https://www.google.com/recaptcha/api/siteverify');
+/**#@-*/
+
+
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix  = 'wp_';
+
+/**
+ * For developers: WordPress debugging mode.
+ *
+ * Change this to true to enable the display of notices during development.
+ * It is strongly recommended that plugin and theme developers use WP_DEBUG
+ * in their development environments.
+ *
+ * For information on other constants that can be used for debugging,
+ * visit the Codex.
+ *
+ * @link https://codex.wordpress.org/Debugging_in_WordPress
+ */
+define('WP_DEBUG', getenv('WP_DEBUG'));
+/* Multisite */
+define( 'WP_ALLOW_MULTISITE', true );
+
+// S3
+// define( 'S3_UPLOADS_BUCKET', '');
+// define( 'S3_UPLOADS_KEY', '');
+// define( 'S3_UPLOADS_SECRET', '');
+// define( 'S3_UPLOADS_REGION', 'eu-central-1');
+
+/* That's all, stop editing! Happy blogging. */
+
+/** Absolute path to the WordPress directory. */
+if ( !defined('ABSPATH') )
+	define('ABSPATH', dirname(__FILE__) . '/');
+
+require_once __DIR__ . '/wp-content/vendor/autoload.php';
+
+/** Sets up WordPress vars and included files. */
+require_once(ABSPATH . 'wp-settings.php');

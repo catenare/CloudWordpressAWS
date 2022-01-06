@@ -1,22 +1,11 @@
 FROM php:apache-bullseye
 
-ENV APACHE_DOCUMENT_ROOT /var/www/html/wordpress
-
-# persistent dependencies
-RUN set -eux; \
-  apt-get update; \
-  apt-get install -y --no-install-recommends \
-  # Ghostscript is required for rendering PDF previews
-  ghostscript \
-  ; \
-  rm -rf /var/lib/apt/lists/*
+ENV APACHE_DOCUMENT_ROOT /var/www/html/wp
 
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
 RUN set -ex; \
-  \
   savedAptMark="$(apt-mark showmanual)"; \
-  \
-  apt-get update; \
+  apt-get update && export DEBIAN_FRONTEND=noninteractive; \
   apt-get install -y --no-install-recommends \
   libfreetype6-dev \
   libjpeg-dev \
@@ -26,6 +15,7 @@ RUN set -ex; \
   libzip-dev \
   wget \
   git \
+  ghostscript \
   ; \
   \
   docker-php-ext-configure gd \
@@ -56,6 +46,9 @@ RUN set -ex; \
   # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
   apt-mark auto '.*' > /dev/null; \
   apt-mark manual $savedAptMark; \
+  apt-get clean -y; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+  rm -rf /var/lib/apt/lists/*; \
   ldd "$extDir"/*.so \
   | awk '/=>/ { print $3 }' \
   | sort -u \
@@ -114,23 +107,24 @@ RUN set -eux; \
   # (replace all instances of "%h" with "%a" in LogFormat)
   find /etc/apache2 -type f -name '*.conf' -exec sed -ri 's/([[:space:]]*LogFormat[[:space:]]+"[^"]*)%h([^"]*")/\1%a\2/g' '{}' +
 
-WORKDIR /var/www/html
+# WORKDIR /var/www/html
 
 RUN set -ex; \
   chown -R www-data:www-data /var/www/html; \
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
   php composer-setup.php --install-dir=/usr/local/bin --filename=composer --quiet;
 
-COPY composer.json /var/www/html
+# COPY composer.json /var/www/html
 COPY wp-config.php /var/www/html
 
 RUN set -ex; \
   composer install --no-dev -vvv;\
   chown -R www-data:www-data /var/www/html;
 
-COPY htaccess /var/www/html/wordpress/.htacces
+COPY htaccess /var/www/html/wp/.htacces
 
 RUN set -ex; \
+  apt-get clean -y\
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
   rm -rf /var/lib/apt/lists/*; \
   composer clearcache;

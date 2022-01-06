@@ -1,26 +1,21 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/php-mariadb
-// Update the VARIANT arg in docker-compose.yml to pick a PHP version
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/php
 {
-  "name": "PHP & MariaDB (Community)",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
+  "name": "PHP",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      // Update VARIANT to pick a PHP version: 8, 8.1, 8.0, 7, 7.4
+      // Append -bullseye or -buster to pin to an OS version.
+      // Use -bullseye variants on local on arm64/Apple Silicon.
+      "VARIANT": "8-bullseye",
+      "NODE_VERSION": "lts/*"
+    }
+  },
 
   // Set *default* container specific settings.json values on container create.
   "settings": {
-    "sqltools.connections": [
-      {
-        "name": "Container database",
-        "driver": "MariaDB",
-        "server": "localhost",
-        "previewLimit": 50,
-        "port": 3306,
-        "database": "mariadb",
-        "username": "root",
-        "password": "mariadb"
-      }
-    ]
+    "php.validate.executablePath": "/usr/local/bin/php"
   },
 
   // Add the IDs of extensions you want installed when the container is created.
@@ -67,8 +62,8 @@
     "ikappas.composer"
   ],
 
-  // For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
-  "forwardPorts": [8080, 3306],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [8080],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
@@ -77,9 +72,6 @@
   "remoteUser": "vscode",
   "features": {
     "git": "latest",
-    "github-cli": "latest",
-    "homebrew": "latest",
-    "common": "latest",
-    "node": "latest",
+    "github-cli": "latest"
   }
 }

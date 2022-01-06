@@ -1,6 +1,9 @@
 # Wordpress Configuration with **composer.json** and **Docker**
 
 - Guide: https://composer.rarst.net
+* Install Composer
+    * `wget https://raw.githubusercontent.com/composer/getcomposer.org/baa8937c704cdbf8982a2456f939363b82da0985/web/installer -O - -q | php -- --quiet`
+    * `
 
 ## Using Amazon Lightsail instance with Ubuntu as development box
 
@@ -47,3 +50,11 @@
   ### Setup Composer.json
 
   - https://docs.platform.sh/guides/wordpress/composer/migrate.html
+
+
+* Test Server
+* `sudo service apache2 start`
+* `sudo sevice apache2 stop`
+
+* Set environment variables
+* `set -a; source .env; set +a`
