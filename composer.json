@@ -1,13 +1,13 @@
 {
   "name": "nziswano/wordpress-docker",
-  "description": "Dockerized Wordpress",
+  "description": "Dockerized Wordpress using Composer",
   "keywords": [
     "wordpress",
     "blog",
     "cms"
   ],
-  "type": "wordpress-core",
-  "homepage": "http://www.docfoxapp.com",
+  "type": "project",
+  "homepage": "https://www.nziswano.co.za",
   "license": "GPL-2.0+",
   "authors": [
     {
@@ -24,25 +24,11 @@
   "support": {
     "email": "info@nziswano.co.za"
   },
-  "extra": {
-    "wordpress-install-dir": "wordpress",
-    "installer-paths": {
-      "wordpress/wp-content/plugins/{$name}": [
-        "type:wordpress-plugin"
-      ],
-      "wordpress/wp-content/themes/{$name}": [
-        "type:wordpress-theme"
-      ],
-      "wordpress/wp-content/mu-plugins/{$name}": [
-        "type:wordpress-muplugin"
-      ]
-    }
+  "config": {
+    "vendor-dir": "wp-content/vendor"
   },
   "require": {
-    "php": ">=8",
-    "composer/installers": "*",
-    "johnpbloch/wordpress-core-installer": "*",
-    "johnpbloch/wordpress-core": "*"
+    "johnpbloch/wordpress": ">=5.8"
   },
   "require-dev": {
     "wpackagist-plugin/wordpress-reset": "*",
@@ -52,6 +38,9 @@
     "wpackagist-plugin/debug-bar-console": "*",
     "phpmd/phpmd": "@stable",
     "phpunit/phpunit": "*"
+  },
+  "extra": {
+    "wordpress-install-dir": "wp"
   },
   "repositories": [
     {

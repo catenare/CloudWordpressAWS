@@ -1,5 +1,7 @@
 # Wordpress Configuration with **composer.json** and **Docker**
 
+- Guide: https://composer.rarst.net
+
 ## Using Amazon Lightsail instance with Ubuntu as development box
 
 - Setup Docker on Ubuntu

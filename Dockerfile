@@ -64,9 +64,6 @@ RUN set -ex; \
   | sort -u \
   | xargs -rt apt-mark manual; \
   \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-  rm -rf /var/lib/apt/lists/*; \
-  \
   ! { ldd "$extDir"/*.so | grep 'not found'; }; \
   # check for output like "PHP Warning:  PHP Startup: Unable to load dynamic library 'foo' (tried: ...)
   err="$(php --version 3>&1 1>&2 2>&3)"; \
