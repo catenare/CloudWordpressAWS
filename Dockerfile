@@ -19,11 +19,6 @@ RUN set -ex; \
   ghostscript \
   ; \
   \
-  docker-php-ext-configure gd \
-  --with-freetype \
-  --with-jpeg \
-  --with-webp \
-  ; \
   docker-php-ext-install -j "$(nproc)" \
   bcmath \
   exif \
@@ -32,6 +27,11 @@ RUN set -ex; \
   pdo \
   pdo_mysql \
   zip \
+  ; \
+  docker-php-ext-configure gd \
+  --with-freetype \
+  --with-jpeg \
+  --with-webp \
   ; \
   # https://pecl.php.net/package/imagick
   pecl install imagick-3.6.0; \

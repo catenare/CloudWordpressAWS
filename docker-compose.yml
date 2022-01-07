@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: nziswano-wordpress
     depends_on:
-      - wordpressdb
+      - db
     ports:
       - "9090:80"
     environment:
