@@ -1,12 +1,13 @@
 FROM php:apache-bullseye
 
-ENV APACHE_DOCUMENT_ROOT /var/www/html/wp
+ENV APACHE_DOCUMENT_ROOT /var/www/html/wordpress
 
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
 RUN set -ex; \
   savedAptMark="$(apt-mark showmanual)"; \
   apt-get update && export DEBIAN_FRONTEND=noninteractive; \
   apt-get install -y --no-install-recommends \
+  mariadb-client \
   libfreetype6-dev \
   libjpeg-dev \
   libmagickwand-dev \
@@ -28,6 +29,8 @@ RUN set -ex; \
   exif \
   gd \
   mysqli \
+  pdo \
+  pdo_mysql \
   zip \
   ; \
   # https://pecl.php.net/package/imagick
@@ -109,16 +112,11 @@ RUN set -eux; \
 
 # WORKDIR /var/www/html
 
-RUN set -ex; \
-  chown -R www-data:www-data /var/www/html; \
-  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
-  php composer-setup.php --install-dir=/usr/local/bin --filename=composer --quiet;
-
 # COPY composer.json /var/www/html
 COPY wp-config.php /var/www/html
 
 RUN set -ex; \
-  composer install --no-dev -vvv;\
+  php composer.phar install --no-dev -vvv;\
   chown -R www-data:www-data /var/www/html;
 
 COPY htaccess /var/www/html/wp/.htacces

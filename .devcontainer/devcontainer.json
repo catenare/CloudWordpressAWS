@@ -17,7 +17,7 @@
   "settings": {
     "php.validate.executablePath": "/usr/local/bin/php"
   },
-
+  "runArgs": ["--env-file", ".env"],
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
     "felixfbecker.php-debug",
@@ -63,7 +63,7 @@
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [8080, 3306],
+  "forwardPorts": [8080, 3306, 9000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
