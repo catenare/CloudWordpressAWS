@@ -1,15 +1,13 @@
 # Wordpress Configuration with **composer.json** and **Docker**
+## Creating the Wordpress Docker configuration
+* Based on on Official wordpress docker container
+  * [Wordpress Docker](https://github.com/docker-library/wordpress)
+## Wordpress Composer config
+- [Composer Config](https://composer.rarst.net)
 
-## Running Docker on my M1 Mac
-* Using Macports
-* `sudo port install docker docker-compose`
-
-- Guide: https://composer.rarst.net
-
-* Install Composer
-  - `wget https://raw.githubusercontent.com/composer/getcomposer.org/baa8937c704cdbf8982a2456f939363b82da0985/web/installer -O - -q | php -- --quiet`
-  - `
-
+## Setting up Nginx Unit
+  - nginx - https://unit.nginx.org/installation/?_ga=2.164349946.45652302.1588254197-1506587029.1585825834#installation-docker
+  - php - https://unit.php.net/manual/en/installation.docker.html
 ## Using Amazon Lightsail instance with Ubuntu as development box
 
 - Setup Docker on Ubuntu
@@ -21,15 +19,9 @@
   - Access server at port 9090
 
   - Setup System Parameters with AWS
-
-  ## Setting up a dev container for PHP development using Github Codespaces
-
-  - Default - php & mariadb
-  - Add fpm as an option (going to use nginx as the web server)
-    - FPM container - https://github.com/docker-library/wordpress/blob/fbc4dd7593dd0cf7a239348cb7ebcdcbf505286f/latest/php8.1/fpm/Dockerfile
-  - nginx - https://unit.nginx.org/installation/?_ga=2.164349946.45652302.1588254197-1506587029.1585825834#installation-docker
-  - php - https://unit.php.net/manual/en/installation.docker.html
-  - Microsoft VSCode Dev Containers - https://github.com/Microsoft/vscode-dev-containers
+## Github CodeSpaces Setup
+* Using [php-mariadb container](https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/php-mariadb)
+* Microsoft VSCode Dev Containers - https://github.com/Microsoft/vscode-dev-containers
 
   ### Task list
 

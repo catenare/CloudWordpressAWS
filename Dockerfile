@@ -1,23 +1,34 @@
-FROM php:apache-bullseye
+FROM php:8.1-apache
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/wordpress
-
+# persistent dependencies
+RUN set -eux; \
+  apt-get update; \
+  apt-get install -y --no-install-recommends \
+  # Ghostscript is required for rendering PDF previews
+  wget \
+  git \
+  ghostscript \
+  mariadb-client \
+  ; \
+  rm -rf /var/lib/apt/lists/*
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
-RUN set -ex; \
+RUN set -eux; \
   savedAptMark="$(apt-mark showmanual)"; \
   apt-get update && export DEBIAN_FRONTEND=noninteractive; \
   apt-get install -y --no-install-recommends \
-  mariadb-client \
   libfreetype6-dev \
   libjpeg-dev \
   libmagickwand-dev \
   libpng-dev \
   libwebp-dev \
   libzip-dev \
-  wget \
-  git \
-  ghostscript \
   ; \
+  \
+  docker-php-ext-configure gd \
+  --with-freetype \
+  --with-jpeg \
+  --with-webp; \
   \
   docker-php-ext-install -j "$(nproc)" \
   bcmath \
@@ -26,13 +37,8 @@ RUN set -ex; \
   mysqli \
   pdo \
   pdo_mysql \
-  zip \
-  ; \
-  docker-php-ext-configure gd \
-  --with-freetype \
-  --with-jpeg \
-  --with-webp \
-  ; \
+  zip; \
+  \ 
   # https://pecl.php.net/package/imagick
   pecl install imagick-3.6.0; \
   docker-php-ext-enable imagick; \
@@ -49,9 +55,6 @@ RUN set -ex; \
   # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
   apt-mark auto '.*' > /dev/null; \
   apt-mark manual $savedAptMark; \
-  apt-get clean -y; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-  rm -rf /var/lib/apt/lists/*; \
   ldd "$extDir"/*.so \
   | awk '/=>/ { print $3 }' \
   | sort -u \
@@ -60,10 +63,18 @@ RUN set -ex; \
   | sort -u \
   | xargs -rt apt-mark manual; \
   \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+  rm -rf /var/lib/apt/lists/*; \
+  \
   ! { ldd "$extDir"/*.so | grep 'not found'; }; \
   # check for output like "PHP Warning:  PHP Startup: Unable to load dynamic library 'foo' (tried: ...)
   err="$(php --version 3>&1 1>&2 2>&3)"; \
   [ -z "$err" ]
+
+# Install composer
+RUN curl -sSL https://getcomposer.org/installer | php \
+  && chmod +x composer.phar \
+  && mv composer.phar /usr/local/bin/composer
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
@@ -110,27 +121,15 @@ RUN set -eux; \
   # (replace all instances of "%h" with "%a" in LogFormat)
   find /etc/apache2 -type f -name '*.conf' -exec sed -ri 's/([[:space:]]*LogFormat[[:space:]]+"[^"]*)%h([^"]*")/\1%a\2/g' '{}' +
 
-# WORKDIR /var/www/html
-
-# COPY composer.json /var/www/html
+COPY composer.json /var/www/html
+RUN composer install --no-dev -vvv
+COPY htaccess ${APACHE_DOCUMENT_ROOT}/.htacces
 COPY wp-config.php /var/www/html
 
-RUN set -ex; \
-  php composer.phar install --no-dev -vvv;\
-  chown -R www-data:www-data /var/www/html;
-
-COPY htaccess /var/www/html/wp/.htacces
-
-RUN set -ex; \
-  apt-get clean -y\
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-  rm -rf /var/lib/apt/lists/*; \
-  composer clearcache;
-
-COPY docker-entrypoint.sh /usr/local/bin/
+RUN chown -R www-data:www-data /var/www/html 
+RUN composer clearcache
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
