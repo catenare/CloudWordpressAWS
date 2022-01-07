@@ -1,5 +1,9 @@
 # Wordpress Configuration with **composer.json** and **Docker**
 
+## Running Docker on my M1 Mac
+* Using Macports
+* `sudo port install docker docker-compose`
+
 - Guide: https://composer.rarst.net
 
 * Install Composer
