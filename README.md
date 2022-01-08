@@ -110,6 +110,19 @@
 ```
 
 ## Developer environment using DevContainers
+### Using Dev Container to test configuration
+
+* Already configured in devcontainer
+* Steps
+1. Start the dev container
+  * **F1** *remote-container: Reopen container* - Will restart with a devcontainer configuration
+1. Add local .env variables to container environment.
+  * `set -a; source .env; set +a`
+1. Copy *wp-config.php* to */var/www/html*
+1. Run composer install. `composer install`
+1. Run php built-in server. `php -S 0.0.0.0:8000 -t /var/www/html/wordpress/
+1. Open your browser to *http://localhost:8000*
+
 
 - Adding ssh keys
 

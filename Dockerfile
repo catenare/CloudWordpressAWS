@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:7.4-cli
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/wordpress
 # persistent dependencies
