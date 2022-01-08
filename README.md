@@ -79,3 +79,6 @@ ssh-add ~/ssh/github_catenare
 - docker/build-push-action
   - https://github.com/docker/build-push-action
   - https://github.com/marketplace/actions/docker-build-push-action
+
+## Debugging Docker image
+* `docker run --rm -it  -p 8000:8000/tcp nziswano:wordpress bash`

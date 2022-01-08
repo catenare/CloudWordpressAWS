@@ -1,6 +1,5 @@
 FROM php:7.4-cli
 
-ENV APACHE_DOCUMENT_ROOT /var/www/html/wordpress
 # persistent dependencies
 RUN set -eux; \
   apt-get update; \
@@ -71,11 +70,6 @@ RUN set -eux; \
   err="$(php --version 3>&1 1>&2 2>&3)"; \
   [ -z "$err" ]
 
-# Install composer
-RUN curl -sSL https://getcomposer.org/installer | php \
-  && chmod +x composer.phar \
-  && mv composer.phar /usr/local/bin/composer
-
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
 RUN set -eux; \
@@ -87,6 +81,7 @@ RUN set -eux; \
   echo 'opcache.revalidate_freq=2'; \
   echo 'opcache.fast_shutdown=1'; \
   } > /usr/local/etc/php/conf.d/opcache-recommended.ini
+
 # https://wordpress.org/support/article/editing-wp-config-php/#configure-error-logging
 RUN { \
   # https://www.php.net/manual/en/errorfunc.constants.php
@@ -102,36 +97,19 @@ RUN { \
   echo 'html_errors = Off'; \
   } > /usr/local/etc/php/conf.d/error-logging.ini
 
-RUN set -eux; \
-  a2enmod rewrite expires; \
-  \
-  # https://httpd.apache.org/docs/2.4/mod/mod_remoteip.html
-  a2enmod remoteip; \
-  { \
-  echo 'RemoteIPHeader X-Forwarded-For'; \
-  # these IP ranges are reserved for "private" use and should thus *usually* be safe inside Docker
-  echo 'RemoteIPTrustedProxy 10.0.0.0/8'; \
-  echo 'RemoteIPTrustedProxy 172.16.0.0/12'; \
-  echo 'RemoteIPTrustedProxy 192.168.0.0/16'; \
-  echo 'RemoteIPTrustedProxy 169.254.0.0/16'; \
-  echo 'RemoteIPTrustedProxy 127.0.0.0/8'; \
-  } > /etc/apache2/conf-available/remoteip.conf; \
-  a2enconf remoteip; \
-  # https://github.com/docker-library/wordpress/issues/383#issuecomment-507886512
-  # (replace all instances of "%h" with "%a" in LogFormat)
-  find /etc/apache2 -type f -name '*.conf' -exec sed -ri 's/([[:space:]]*LogFormat[[:space:]]+"[^"]*)%h([^"]*")/\1%a\2/g' '{}' +
-# Basic Wordpress Setup
+WORKDIR /site
+
+# Install composer
+RUN curl -sSL https://getcomposer.org/installer | php \
+  && chmod +x composer.phar \
+  && mv composer.phar /usr/local/bin/composer
 
 # Setup Composer
-COPY composer.json /var/www/html
+COPY composer.json /site
 RUN composer install --no-dev -vvv
-COPY htaccess ${APACHE_DOCUMENT_ROOT}/.htacces
-COPY wp-config.php /var/www/html
-
-RUN chown -R www-data:www-data /var/www/html 
 RUN composer clearcache
 
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+COPY wp-config.php /site
 
-CMD ["apache2-foreground"]
+ENTRYPOINT [ "php", "-S", "0.0.0.0:8000", "-t", "wordpress" ]
+EXPOSE 8000

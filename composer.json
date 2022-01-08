@@ -25,7 +25,7 @@
     "email": "info@nziswano.co.za"
   },
   "config": {
-    "vendor-dir": "/var/www/html/wp-content/vendor",
+    "vendor-dir": "/site/wp-content/vendor",
     "allow-plugins": {
       "johnpbloch/wordpress-core-installer": true,
       "composer/installers": true
@@ -44,12 +44,12 @@
     "phpunit/phpunit": "*"
   },
   "extra": {
-    "wordpress-install-dir": "/var/www/html/wordpress",
+    "wordpress-install-dir": "/site/wordpress",
     "installer-paths": {
-      "/var/www/html/wp-content/plugins/{$name}": [
+      "/site/wp-content/plugins/{$name}": [
         "type:wordpress-plugin"
       ],
-      "var/www/html/wp-content/themes/{$name}": [
+      "/site/wp-content/themes/{$name}": [
         "type:wordpress-theme"
       ]
     }
