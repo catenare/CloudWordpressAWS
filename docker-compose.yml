@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   wordpress:
     image: nziswano:wordpress
@@ -36,6 +36,10 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     env_file:
       - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_init:/docker-entrypoint-initdb.d
   adminer:
     image: adminer:latest
     ports:

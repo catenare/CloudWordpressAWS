@@ -34,7 +34,7 @@ define('DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD'));
 define('DB_HOST', getenv('WORDPRESS_DB_HOST'));
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8mb4');
+define('DB_CHARSET', getenv('WORDPRESS_DB_CHARSET'));
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
@@ -86,7 +86,7 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', getenv('WP_DEBUG'));
 /* Multisite */
-define( 'WP_ALLOW_MULTISITE', true );
+define( 'WP_ALLOW_MULTISITE', getenv('WP_MULTISITE'));
 
 // S3
 // define( 'S3_UPLOADS_BUCKET', '');
