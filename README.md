@@ -16,7 +16,7 @@
 ## PHP Built-in Server
 
 - [PHP Built-in Server](https://www.php.net/manual/en/features.commandline.webserver.php)
-- `php -S localhost:8000`
+- `php -S localhost:8000 -t wordpress/`
 
 ## Setting up Nginx Unit
 

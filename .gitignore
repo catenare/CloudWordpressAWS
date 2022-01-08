@@ -90,3 +90,6 @@ ecs/*.yml
 ecs/*.json
 site/*
 composer.lock
+
+# Wordpress download #
+latest.tar.gz
