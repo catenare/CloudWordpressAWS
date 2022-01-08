@@ -18,6 +18,8 @@
  * @package WordPress
  */
 
+ require_once __DIR__ . '/wp-content/vendor/autoload.php';
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', getenv('WORDPRESS_DB_NAME'));
@@ -98,7 +100,7 @@ define( 'WP_ALLOW_MULTISITE', true );
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
 
-require_once __DIR__ . '/wp-content/vendor/autoload.php';
+
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');

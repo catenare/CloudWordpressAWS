@@ -121,6 +121,7 @@ RUN set -eux; \
   # (replace all instances of "%h" with "%a" in LogFormat)
   find /etc/apache2 -type f -name '*.conf' -exec sed -ri 's/([[:space:]]*LogFormat[[:space:]]+"[^"]*)%h([^"]*")/\1%a\2/g' '{}' +
 
+# Setup Composer
 COPY composer.json /var/www/html
 RUN composer install --no-dev -vvv
 COPY htaccess ${APACHE_DOCUMENT_ROOT}/.htacces
