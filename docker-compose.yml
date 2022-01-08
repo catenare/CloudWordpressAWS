@@ -28,7 +28,7 @@ services:
     env_file:
       - .env
   db:
-    image: mariadb:latest
+    image: mariadb:10.6
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
