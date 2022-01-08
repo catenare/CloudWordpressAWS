@@ -5,6 +5,9 @@
 ## Wordpress Composer config
 - [Composer Config](https://composer.rarst.net)
 
+## MariaDB setup
+* [Docker Compose MariaDB](https://onexlab-io.medium.com/docker-compose-mariadb-5eb7a37426a2)
+
 ## Setting up Nginx Unit
   - nginx - https://unit.nginx.org/installation/?_ga=2.164349946.45652302.1588254197-1506587029.1585825834#installation-docker
   - php - https://unit.php.net/manual/en/installation.docker.html

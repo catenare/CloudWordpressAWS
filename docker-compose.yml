@@ -36,6 +36,10 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     env_file:
       - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./local_db:/docker-entrypoint-initdb.d
   adminer:
     image: adminer:latest
     ports:
