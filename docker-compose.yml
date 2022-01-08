@@ -39,7 +39,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./db_init:/docker-entrypoint-initdb.d
+      - mariadb-data:/var/lib/mysql
   adminer:
     image: adminer:latest
     ports:

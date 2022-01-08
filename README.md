@@ -8,7 +8,8 @@
 ## Creating the Wordpress Docker configuration
 
 - My docker file is based on the official WordPress docker container
-  - [Wordpress Docker](https://github.com/docker-library/wordpress)
+  - [Wordpress Docker Image](https://github.com/docker-library/wordpress)
+  - [PHP Docker Image](https://github.com/docker-library/php)
 - Uses Composer for configuration
   - [Wordpress Composer Config](https://composer.rarst.net)
 - Using MariaDB for local development
@@ -69,3 +70,12 @@ ssh-add ~/ssh/github_catenare
   - https://www.dmuth.org/wordpress-5-in-docker-with-nginx-and-letsencrypt/
   - https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
   - https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose
+
+## Push image to Github registry
+
+- docker/login-action:
+  - https://github.com/docker/login-action#github-container-registry
+  - https://github.com/marketplace/actions/docker-login
+- docker/build-push-action
+  - https://github.com/docker/build-push-action
+  - https://github.com/marketplace/actions/docker-build-push-action
