@@ -27,7 +27,26 @@
 		"felixfbecker.php-intellisense",
 		"mrmlnc.vscode-apache",
 		"mtxr.sqltools",
-		"mtxr.sqltools-driver-mysql"
+		"mtxr.sqltools-driver-mysql",
+		"streetsidesoftware.code-spell-checker",
+		"naumovs.color-highlight",
+		"ms-azuretools.vscode-docker",
+		"mrmlnc.vscode-duplicate",
+		"editorconfig.editorconfig",
+		"dbaeumer.vscode-eslint",
+		"github.copilot",
+		"github.vscode-pull-request-github",
+		"eg2.vscode-npm-script",
+		"christian-kohler.path-intellisense",
+		"esbenp.prettier-vscode",
+		"dannyconnell.split-html-attributes",
+		"albert.tabout",
+		"meganrogge.template-string-converter",
+		"visualstudioexptteam.vscodeintellicode",
+		"redhat.vscode-xml",
+		"redhat.vscode-yaml",
+		"ikappas.phpcs",
+		"ikappas.composer"
 	],
 
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
