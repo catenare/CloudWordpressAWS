@@ -1,5 +1,4 @@
 version: '3.8'
-
 services: 
   app:
     build:
@@ -12,7 +11,6 @@ services:
         VARIANT: "8.1-apache-bullseye"
         # Optional Node.js version
         NODE_VERSION: "lts/*"
-
 
     volumes:
       - ..:/workspace:cached
@@ -28,7 +26,6 @@ services:
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
     # (Adding the "ports" property to this file will not forward from a Codespace.)
-
   db:
     image: mariadb:10.4
     restart: unless-stopped
@@ -41,7 +38,6 @@ services:
       MYSQL_PASSWORD: wordpress
     # Add "forwardPorts": ["3306"] to **devcontainer.json** to forward MariaDB locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
-
   adminer:
     image: adminer:latest  
 volumes:
