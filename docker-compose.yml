@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   wordpress:
     image: nziswano:wordpress
@@ -39,7 +39,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./local_db:/docker-entrypoint-initdb.d
+      - ./db_init:/docker-entrypoint-initdb.d
   adminer:
     image: adminer:latest
     ports:
