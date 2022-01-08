@@ -1,16 +1,28 @@
 # Wordpress Configuration with **composer.json** and **Docker**
+
 ## Creating the Wordpress Docker configuration
-* Based on on Official wordpress docker container
-  * [Wordpress Docker](https://github.com/docker-library/wordpress)
+
+- Based on on Official wordpress docker container
+  - [Wordpress Docker](https://github.com/docker-library/wordpress)
+
 ## Wordpress Composer config
+
 - [Composer Config](https://composer.rarst.net)
 
 ## MariaDB setup
-* [Docker Compose MariaDB](https://onexlab-io.medium.com/docker-compose-mariadb-5eb7a37426a2)
+
+- [Docker Compose MariaDB](https://onexlab-io.medium.com/docker-compose-mariadb-5eb7a37426a2)
+
+## PHP Built-in Server
+
+- [PHP Built-in Server](https://www.php.net/manual/en/features.commandline.webserver.php)
+- `php -S localhost:8000`
 
 ## Setting up Nginx Unit
-  - nginx - https://unit.nginx.org/installation/?_ga=2.164349946.45652302.1588254197-1506587029.1585825834#installation-docker
-  - php - https://unit.php.net/manual/en/installation.docker.html
+
+- nginx - https://unit.nginx.org/installation/?_ga=2.164349946.45652302.1588254197-1506587029.1585825834#installation-docker
+- php - https://unit.php.net/manual/en/installation.docker.html
+
 ## Using Amazon Lightsail instance with Ubuntu as development box
 
 - Setup Docker on Ubuntu
@@ -22,9 +34,11 @@
   - Access server at port 9090
 
   - Setup System Parameters with AWS
+
 ## Github CodeSpaces Setup
-* Using [php-mariadb container](https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/php-mariadb)
-* Microsoft VSCode Dev Containers - https://github.com/Microsoft/vscode-dev-containers
+
+- Using [php-mariadb container](https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/php-mariadb)
+- Microsoft VSCode Dev Containers - https://github.com/Microsoft/vscode-dev-containers
 
   ### Task list
 
@@ -51,17 +65,17 @@
 
   - https://docs.platform.sh/guides/wordpress/composer/migrate.html
 
-* Test Server
-* `sudo service apache2 start`
-* `sudo sevice apache2 stop`
+- Test Server
+- `sudo service apache2 start`
+- `sudo sevice apache2 stop`
 
-* Set environment variables
-* `set -a; source .env; set +a`
+- Set environment variables
+- `set -a; source .env; set +a`
 
-* Setup
+- Setup
   - /var/www/html/wordpress - location of wordpress config
-* In dev container
-* Edit apache site config and add 8080 virtual host
+- In dev container
+- Edit apache site config and add 8080 virtual host
 
 ```conf
 <VirtualHost *:80>
@@ -93,4 +107,13 @@
         # after it has been globally disabled with "a2disconf".
         #Include conf-available/serve-cgi-bin.conf
 </VirtualHost>
+```
+
+## Developer environment using DevContainers
+
+- Adding ssh keys
+
+```sh
+eval "$(ssh-agent -s)"
+ssh-add ~/ssh/github_catenare
 ```

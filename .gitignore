@@ -89,3 +89,4 @@ database
 ecs/*.yml
 ecs/*.json
 site/*
+composer.lock
