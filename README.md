@@ -31,11 +31,14 @@ ssh-add ~/ssh/github_catenare
   - **F1** _remote-container: Reopen container_ - Will restart with a devcontainer configuration
   1. Add local .env variables to container environment.
   - `set -a; source .env; set +a`
-  1. Copy _wp-config.php_ to _/var/www/html_
+  <!-- 1. Copy _wp-config.php_ to _/var/www/html_ -->
   1. Run composer install. `composer install`
-  - Will put wordpress in _/var/www/html/wordpress_
-  1. Run php built-in server. `php -S 0.0.0.0:8000 -t /var/www/html/wordpress/
+  <!-- - Will put wordpress in _/var/www/html/wordpress_ -->
+  1. Run php built-in server. `php -S 0.0.0.0:8080 -t wordpress/
   1. Open your browser to _http://localhost:8000_
+
+## Setting up Nginx Unit
+* 
 
 ## Resources
 
