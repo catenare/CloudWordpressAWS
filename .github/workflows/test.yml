@@ -21,6 +21,11 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - id: image_name
+      uses: ASzc/change-string-case-action@v2
+      with:
+        string: ${{ env.IMAGE_NAME}}
 
     - name: Build and push
       id: docker_build
@@ -28,4 +33,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.IMAGE_NAME}}:development
+        tags: ${{ steps.image_name.outputs.lowercase }}:development
