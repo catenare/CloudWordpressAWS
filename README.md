@@ -44,13 +44,14 @@ ssh-add ~/ssh/github_catenare
 ### Building custom docker image
 
 - https://unit.nginx.org/installation/#initial-configuration
-
+* https://www.docker.com/blog/multi-arch-images/
 ```sh
 git clone https://github.com/nginx/unit
 cd unit
 git checkout 1.26.1
 cd pkg/docker/
-make build-php7.4 VERSION_php=7.4
+# make build-php7.4 VERSION_php=7.4
+make dockerfiles VERSION_php=7.4
 ```
 
 ```sh
