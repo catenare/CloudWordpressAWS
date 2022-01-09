@@ -17,7 +17,7 @@
     },
     {
       "action": {
-        "share": "/www$uri",
+        "share": "/site/wordpress$uri",
         "fallback": {
           "pass": "applications/wordpress/index"
         }
@@ -30,11 +30,11 @@
       "type": "php",
       "targets": {
         "direct": {
-          "root": "/www/"
+          "root": "/site/wordpress/"
         },
 
         "index": {
-          "root": "/www/",
+          "root": "/site/wordpress/",
           "script": "index.php"
         }
       }

@@ -1,4 +1,4 @@
-FROM php:7.4-cli
+FROM ghcr.io/nziswano/unit:1.26.1-php7.4
 
 # persistent dependencies
 RUN set -eux; \
@@ -108,10 +108,10 @@ RUN curl -sSL https://getcomposer.org/installer | php \
 
 # Setup Composer
 COPY composer.json /site
-RUN composer install --no-dev -vvv
-RUN composer clearcache
-
 COPY wp-config.php /site
 
-ENTRYPOINT [ "php", "-S", "0.0.0.0:8000", "-t", "wordpress" ]
-EXPOSE 8000
+# setup Unit
+COPY config.json /docker-entrypoint.d/
+
+RUN composer install --no-dev -vvv
+RUN composer clearcache
