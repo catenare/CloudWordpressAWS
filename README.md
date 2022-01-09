@@ -38,7 +38,30 @@ ssh-add ~/ssh/github_catenare
   1. Open your browser to _http://localhost:8000_
 
 ## Setting up Nginx Unit
-* 
+
+- Custom build php does not make it easy to run unit
+
+### Building custom docker image
+
+- https://unit.nginx.org/installation/#initial-configuration
+
+```sh
+git clone https://github.com/nginx/unit
+cd unit
+git checkout 1.26.1
+cd pkg/docker/
+make build-php7.4 VERSION_php=7.4
+```
+
+```sh
+export UNIT=$(                                             \
+      docker run -d --mount type=bind,src="$(pwd)/site",dst=/www  \
+      -p 8080:8000 unit:1.27.0-php7.4               \
+  )
+docker exec -ti $UNIT curl -X PUT --data-binary @/www/config.json  \
+      --unix-socket /var/run/control.unit.sock  \
+      http://localhost/config
+```
 
 ## Resources
 
@@ -84,4 +107,5 @@ ssh-add ~/ssh/github_catenare
   - https://github.com/marketplace/actions/docker-build-push-action
 
 ## Debugging Docker image
-* `docker run --rm -it  -p 8000:8000/tcp nziswano:wordpress bash`
+
+- `docker run --rm -it -p 8000:8000/tcp nziswano:wordpress bash`
