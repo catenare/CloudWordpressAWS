@@ -99,6 +99,8 @@ RUN { \
 
 WORKDIR /site
 
+# Composer
+
 # Install composer
 RUN curl -sSL https://getcomposer.org/installer | php \
   && chmod +x composer.phar \
