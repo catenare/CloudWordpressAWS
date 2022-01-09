@@ -93,3 +93,5 @@ composer.lock
 
 # Wordpress download #
 latest.tar.gz
+wordpress
+wp-content
