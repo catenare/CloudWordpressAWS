@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   wordpress:
     image: nziswano:wordpress
@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile
     container_name: nziswano-wordpress
     depends_on:
-      - wordpressdb
+      - db
     ports:
-      - "9090:80"
+      - "9090:8000"
     environment:
       - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
       - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
@@ -25,10 +25,26 @@ services:
       - NONCE_SALT=${NONCE_SALT}
       - MY_KEY=${MY_KEY}
       - WP_DEBUG=${WP_DEBUG}
-  wordpressdb:
-    image: mariadb:latest
+    env_file:
+      - .env
+  db:
+    image: mariadb:10.6
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+volumes:
+  mariadb-data: null

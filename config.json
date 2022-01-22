@@ -1,0 +1,43 @@
+{
+  "listeners": {
+    "*:8000": {
+      "pass": "routes"
+    }
+  },
+
+  "routes": [
+    {
+      "match": {
+        "uri": ["*.php", "*.php/*", "/wp-admin/"]
+      },
+
+      "action": {
+        "pass": "applications/wordpress/direct"
+      }
+    },
+    {
+      "action": {
+        "share": "/site/wordpress$uri",
+        "fallback": {
+          "pass": "applications/wordpress/index"
+        }
+      }
+    }
+  ],
+
+  "applications": {
+    "wordpress": {
+      "type": "php",
+      "targets": {
+        "direct": {
+          "root": "/site/wordpress/"
+        },
+
+        "index": {
+          "root": "/site/wordpress/",
+          "script": "index.php"
+        }
+      }
+    }
+  }
+}
