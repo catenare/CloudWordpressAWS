@@ -110,3 +110,6 @@ docker exec -ti $UNIT curl -X PUT --data-binary @/www/config.json  \
 ## Debugging Docker image
 
 - `docker run --rm -it -p 8000:8000/tcp nziswano:wordpress bash`
+
+## Github action to push to AWS Registry
+* Need to push generated image to AWS registry
