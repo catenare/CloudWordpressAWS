@@ -44,7 +44,9 @@ ssh-add ~/ssh/github_catenare
 ### Building custom docker image
 
 - https://unit.nginx.org/installation/#initial-configuration
+
 * https://www.docker.com/blog/multi-arch-images/
+
 ```sh
 git clone https://github.com/nginx/unit
 cd unit
@@ -112,4 +114,33 @@ docker exec -ti $UNIT curl -X PUT --data-binary @/www/config.json  \
 - `docker run --rm -it -p 8000:8000/tcp nziswano:wordpress bash`
 
 ## Github action to push to AWS Registry
-* Need to push generated image to AWS registry
+
+- Need to push generated image to AWS registry
+
+# CDK Configuration for our AWS Cloud Based WordPress instance
+
+This is a project to automate the deployment of WordPress as a service into AWS.
+
+- TODO: Put diagram of overall system architecture
+
+## CDK Details
+
+The `cdk.json` file tells the CDK Toolkit how to execute your app.
+
+### Useful commands
+
+- `npm run build` compile typescript to js
+- `npm run watch` watch for changes and compile
+- `npm run test` perform the jest unit tests
+- `cdk deploy` deploy this stack to your default AWS account/region
+- `cdk diff` compare deployed stack with current state
+- `cdk synth` emits the synthesized CloudFormation template
+
+## AWS ECR Config
+
+- Container registry via CDK
+
+* Created the `aws-ecr-repo` stack
+* Added test to test against generated cloudformation
+
+### Adding a github action to deploy this stack
