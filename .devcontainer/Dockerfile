@@ -18,6 +18,13 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
-# [Optional] Uncomment this line to install global node packages.
-# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+ARG TARGETARCH
+# Install aws cli
+# https://todothinkofname.net/2021/07/11/Codespaces-with-AWS/
 
+# https://stackoverflow.com/questions/68087991/define-a-path-depending-on-the-target-platform-within-the-dockerfile-in-order-to
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install && rm -rf aws awscliv2.zip
+
+# [Optional] Uncomment this line to install global node packages.
+RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g aws-cdk" 2>&1
