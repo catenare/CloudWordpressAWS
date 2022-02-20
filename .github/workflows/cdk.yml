@@ -1,0 +1,35 @@
+name: Test and deploy my CDK configuration for Wordpress
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: actions/checkout
+        uses: actions/checkout@v2
+        
+      - name: actions/setup-node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+      - run: npm install
+
+      - name: CDK Synth
+        uses: arnaskro/aws-cdk-v2-github-actions@v2.2.0
+        with:
+          cdk_subcommand: 'synth'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.DEV_AWS_REGION }}
+      - name: CDK Test
+        run: npm run test
+
+      - name: CDK Deploy
+        uses: arnaskro/aws-cdk-v2-github-actions@v2.2.0
+        with:
+          cdk_subcommand: 'deploy'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.DEV_AWS_REGION }}
