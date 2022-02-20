@@ -1,5 +1,10 @@
 name: Build local image for testing
-on: [push]
+on: 
+  push:
+    paths-ignore:
+      - 'lib/**'
+      - 'test/**'
+      - 'bin/**'
 
 env:
   REGISTRY: ghcr.io

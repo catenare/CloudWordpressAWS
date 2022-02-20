@@ -1,5 +1,10 @@
 name: Test and deploy my CDK configuration for Wordpress
-on: [push]
+on: 
+  push:
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'bin/**'
 
 jobs:
   build:
