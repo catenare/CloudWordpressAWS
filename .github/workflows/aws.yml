@@ -1,5 +1,10 @@
 name: Deploy to Amazon Container Registry
-on: [push]
+on: 
+  push:
+    paths-ignore:
+      - 'lib/**'
+      - 'test/**'
+      - 'bin/**'
 
 jobs:
   deploy:
