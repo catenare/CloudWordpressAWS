@@ -144,3 +144,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * Added test to test against generated cloudformation
 
 ### Adding a github action to deploy this stack
+
+- Can test in github actions
+- Can create cloudformation via github actions
+- Can create a docker image and push to ecr registry via github actions
