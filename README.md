@@ -115,7 +115,10 @@ docker exec -ti $UNIT curl -X PUT --data-binary @/www/config.json  \
 
 ## Github action to push to AWS Registry
 
-- Need to push generated image to AWS registry
+- **aws.yml** action file
+  - Only push to AWS when pushing to master
+- **github_registry.yml**
+  - Push to github registry on updates to wordpress config
 
 # CDK Configuration for our AWS Cloud Based WordPress instance
 
@@ -135,19 +138,39 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 - `cdk deploy` deploy this stack to your default AWS account/region
 - `cdk diff` compare deployed stack with current state
 - `cdk synth` emits the synthesized CloudFormation template
+- Testing
+  - `npm run build && cdk synth && npm run test`
 
 ## AWS ECR Config
 
 - Container registry via CDK
 
-* Created the `aws-ecr-repo` stack
+* Created the `CmsRegistryStack` stack
 * Added test to test against generated cloudformation
+  - Test File: **test/cms_registry_cdk.test.ts**
 
 ### Adding a github action to deploy this stack
 
-- Can test in github actions
-- Can create cloudformation via github actions
-- Can create a docker image and push to ecr registry via github actions
+- Using `actions/setup-node@v2` to install node for running tests
+
+* Using `arnaskro/aws-cdk-v2-github-actions@v2.2.0` to synth and deploy
+
+### VPC
+
+- Network to access the internet
+
+### Database
+
+- Serverless
+- MySQL
+
+### SSM - Systems Manager
+
+- All settings are kept here
+
+### Fargate
+
+- Get data from ecr registry
 
 ## Setup SSM parameters
 
