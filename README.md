@@ -143,24 +143,28 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ### Setup List
 
-- [ ] ECR
+- [x] ECR
 - [ ] VPC/Network
 - [ ] System Parameters
+- [ ] Aurora Serverless Database
+- [ ] EFS File System
+- [ ] Task Definition
 
 ## AWS ECR Config
 
-- Container registry via CDK
-
-* Created the `CmsRegistryStack` stack
-* Added test to test against generated cloudformation
+- Created the `CmsRegistryStack` stack
+- Added test to test against generated cloudformation
   - Test File: **test/cms_registry_cdk.test.ts**
+- Details:
+  - Repository name: **nziswano-registry**
+  - Image Tag: **wordpress_cms**
 
 ### Adding a github action to deploy this stack
 
 - Using `actions/setup-node@v2` to install node for running tests
 - Using `arnaskro/aws-cdk-v2-github-actions@v2.2.0` to synth and deploy
 
-### VPC
+## VPC
 
 - Network to access the internet
 
