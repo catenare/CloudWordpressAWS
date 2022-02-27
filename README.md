@@ -141,6 +141,12 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 - Testing
   - `npm run build && cdk synth && npm run test`
 
+### Setup List
+
+- [ ] ECR
+- [ ] VPC/Network
+- [ ] System Parameters
+
 ## AWS ECR Config
 
 - Container registry via CDK
@@ -152,8 +158,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 ### Adding a github action to deploy this stack
 
 - Using `actions/setup-node@v2` to install node for running tests
-
-* Using `arnaskro/aws-cdk-v2-github-actions@v2.2.0` to synth and deploy
+- Using `arnaskro/aws-cdk-v2-github-actions@v2.2.0` to synth and deploy
 
 ### VPC
 
