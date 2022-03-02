@@ -29,3 +29,12 @@ test('SSM Parameters', () => {
         Name: Match.stringLikeRegexp('/cms/wp-multisite')
     });
 })
+
+test('Aurora Settings', () => {
+    const app = new cdk.App();
+    const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
+    const template = Template.fromStack(stack);
+
+    template.resourceCountIs('AWS::Aur', 11);
+
+})

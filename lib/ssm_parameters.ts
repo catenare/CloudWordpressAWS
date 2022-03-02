@@ -6,7 +6,7 @@ import { Construct } from 'constructs';
 
 
 export interface ParamProps {
-  db: rds.DatabaseInstance;
+  db: rds.ServerlessCluster;
 }
 export class SsmParameters extends Construct {
   constructor(scope: Construct, id: string, props: ParamProps) {
@@ -53,7 +53,7 @@ export class SsmParameters extends Construct {
 
     new ssm.StringParameter(this, 'DBResourceArn', {
       parameterName: `/cms/db-resource-arn`,
-      stringValue: props.db.instanceEndpoint.hostname,
+      stringValue: props.db.clusterEndpoint.hostname,
     });
 
     new ssm.StringParameter(this, 'DBResourceArn', {
