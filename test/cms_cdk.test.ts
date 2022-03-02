@@ -19,7 +19,7 @@ test('SSM Parameters', () => {
     const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
     const template = Template.fromStack(stack);
 
-    template.resourceCountIs('AWS::SSM::Parameter', 11);
+    template.resourceCountIs('AWS::SSM::Parameter', 13);
 
     template.hasResourceProperties('AWS::SSM::Parameter', {
         Name: Match.stringLikeRegexp('/cms/wp-nonce_salt')
@@ -28,6 +28,10 @@ test('SSM Parameters', () => {
     template.hasResourceProperties('AWS::SSM::Parameter', {
         Name: Match.stringLikeRegexp('/cms/wp-multisite')
     });
+
+    template.hasResourceProperties('AWS::SSM::Parameter', {
+        Name: Match.stringLikeRegexp('/cms/db-resource-arn')
+    });
 })
 
 test('Aurora Settings', () => {
@@ -35,6 +39,6 @@ test('Aurora Settings', () => {
     const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
     const template = Template.fromStack(stack);
 
-    template.resourceCountIs('AWS::Aur', 11);
+    template.resourceCountIs('AWS::RDS::DBCluster', 1);
 
 })
