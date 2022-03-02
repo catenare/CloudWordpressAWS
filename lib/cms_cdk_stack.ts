@@ -19,9 +19,9 @@ export class CmsCdkStack extends Stack {
       ec2_instance: network.ec2Instance
     });
 
-    // const file_system = new EfsFileSystem(this, 'EfsFileSystem', {
-    //   vpc_network: network.vpc
-    // })
+    const file_system = new EfsFileSystem(this, 'EfsFileSystem', {
+      vpc_network: network.vpc
+    })
 
     const WpSsmParams = new WpSsmParameters(this, 'SsmParameters', {
       db: database.db
