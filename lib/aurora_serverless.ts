@@ -31,15 +31,6 @@ export class AuroraServerless extends Construct {
 
     cluster.connections.allowFrom(props.ec2_instance, ec2.Port.tcp(5432));
 
-    new cdk.CfnOutput(this, 'dbEndpoint', {
-      value: cluster.clusterEndpoint.hostname,
-    });
-
-    new cdk.CfnOutput(this, 'secretName', {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-      value: cluster.secret?.secretName!,
-    });
-
     this.db = cluster;
   }
 }

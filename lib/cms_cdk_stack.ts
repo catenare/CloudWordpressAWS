@@ -18,5 +18,24 @@ export class CmsCdkStack extends Stack {
     const WpSsmParams = new WpSsmParameters(this, 'SsmParameters', {
       db: database.db
     });
+
+    new cdk.CfnOutput(this, 'dbEndpoint', {
+      value: database.db.clusterEndpoint.hostname,
+    });
+
+    new cdk.CfnOutput(this, 'secretName', {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+      value: database.db.secret?.secretName!,
+    });
+
+    new cdk.CfnOutput(this, 'ec2InstanceDns', {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+      value: network.ec2Instance.instancePublicDnsName,
+    });
+
+    new cdk.CfnOutput(this, 'ec2InstanceIp', {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+      value: network.ec2Instance.instancePublicIp,
+    });
   }
 }

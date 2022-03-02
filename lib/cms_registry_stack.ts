@@ -10,7 +10,7 @@ export class CmsRegistryStack extends Stack {
     const ecr_repo = new ecr.Repository(this, 'WordpressDockerRegistry', {
       repositoryName: 'nziswano-registry',
       removalPolicy: cdk.RemovalPolicy.DESTROY,
-      imageTagMutability: ecr.TagMutability.IMMUTABLE,
+      imageTagMutability: ecr.TagMutability.MUTABLE,
       lifecycleRules: [
         {
           maxImageAge: cdk.Duration.days(180)
