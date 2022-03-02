@@ -25,7 +25,8 @@ export class AuroraServerless extends Construct {
       credentials: rds.Credentials.fromGeneratedSecret('wordpress'),
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       deletionProtection: false,
-      defaultDatabaseName: 'wordpress'
+      defaultDatabaseName: 'wordpress',
+      enableDataApi: true,
     });
 
     cluster.connections.allowFrom(props.ec2_instance, ec2.Port.tcp(5432));
