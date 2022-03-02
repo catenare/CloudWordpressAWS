@@ -9,7 +9,7 @@ test('CMS Stack Created', () => {
     const template = Template.fromStack(stack);
 
     template.hasResourceProperties('AWS::EC2::VPC', {
-        CidrBlock: "10.0.0.0/16"
+        CidrBlock: "192.168.0.0/16"
     });
     template.resourceCountIs('AWS::EC2::VPC', 1);
 });

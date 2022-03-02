@@ -12,8 +12,10 @@ export class VpcNetwork extends Construct {
 
     super(scope, id);
 
-    const vpc = new ec2.Vpc(this, 'Vpc', {
-      maxAzs: 2,
+    const vpc = new ec2.Vpc(this, 'cdk-vpc', {
+      cidr: '192.168.0.0/16',
+      maxAzs: 3,
+      natGateways: 0,
       subnetConfiguration: [
         {
           subnetType: SubnetType.PUBLIC,
