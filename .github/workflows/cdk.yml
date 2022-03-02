@@ -34,6 +34,7 @@ jobs:
         uses: arnaskro/aws-cdk-v2-github-actions@v2.2.0
         with:
           cdk_subcommand: 'deploy'
+          cdk_args: '--require-approval never'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
