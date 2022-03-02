@@ -45,7 +45,8 @@
 	"redhat.vscode-yaml",
 	"rangav.vscode-thunder-client",
 	"SebastianBille.iam-legend",
-	"ThreadHeap.serverless-ide-vscode"
+	"ThreadHeap.serverless-ide-vscode",
+	"hediet.vscode-drawio"
 ],
 
   // For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)

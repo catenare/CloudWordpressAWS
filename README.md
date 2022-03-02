@@ -144,7 +144,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 ### Setup List
 
 - [x] ECR
-- [ ] VPC/Network
+- [ ] VPC/Network - Creating a bastion host
 - [ ] System Parameters
 - [ ] Aurora Serverless Database
 - [ ] EFS File System
@@ -206,5 +206,7 @@ MYSQL_PASSWORD=wordpress
 ```
 
 ## Setting up Aurora Serverless Database with MySQL
+
+
 
 ## Setting up Fargate service with configuration info

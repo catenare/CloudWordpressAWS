@@ -44,6 +44,7 @@
     "redhat.vscode-yaml",
     "rangav.vscode-thunder-client",
     "sebastianbille.iam-legend",
-    "ThreadHeap.serverless-ide-vscode"
+    "threadheap.serverless-ide-vscode",
+    "hediet.vscode-drawio"
   ]
 }
