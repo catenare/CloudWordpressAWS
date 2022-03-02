@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { VpcNetwork } from './vpc_network';
-import { SsmParameters } from './ssm_parameters';
+import { WpSsmParameters } from './wp_ssm_parameters';
 import { AuroraServerless } from './aurora_serverless';
 import { Construct } from 'constructs';
 
@@ -15,7 +15,7 @@ export class CmsCdkStack extends Stack {
       ec2_instance: network.ec2Instance
     });
 
-    const ssm_params = new SsmParameters(this, 'SsmParameters', {
+    const WpSsmParams = new WpSsmParameters(this, 'SsmParameters', {
       db: database.db
     });
   }

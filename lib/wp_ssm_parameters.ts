@@ -8,7 +8,7 @@ import { Construct } from 'constructs';
 export interface ParamProps {
   db: rds.ServerlessCluster;
 }
-export class SsmParameters extends Construct {
+export class WpSsmParameters extends Construct {
   constructor(scope: Construct, id: string, props: ParamProps) {
 
     super(scope, id);
@@ -56,7 +56,7 @@ export class SsmParameters extends Construct {
       stringValue: props.db.clusterEndpoint.hostname,
     });
 
-    new ssm.StringParameter(this, 'DBResourceArn', {
+    new ssm.StringParameter(this, 'DBResourceSecret', {
       parameterName: `/cms/db-secret-name`,
       stringValue: props.db.secret?.secretName!,
     });
