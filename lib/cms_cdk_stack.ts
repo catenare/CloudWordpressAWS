@@ -19,27 +19,27 @@ export class CmsCdkStack extends Stack {
       ec2_instance: network.ec2Instance
     });
 
-    const file_system = new EfsFileSystem(this, 'EfsFileSystem', {
-      vpc_network: network.vpc
-    })
+    // const file_system = new EfsFileSystem(this, 'EfsFileSystem', {
+    //   vpc_network: network.vpc
+    // })
 
     const WpSsmParams = new WpSsmParameters(this, 'SsmParameters', {
       db: database.db
     });
 
-    const ecs_cluster = new FargateCluster(this, 'FargateCluster', {
-      vpc: network.vpc
-    })
+    // const ecs_cluster = new FargateCluster(this, 'FargateCluster', {
+    //   vpc: network.vpc
+    // })
 
-    const task_definition = new FargateTaskDefinition(this, 'FargateTaskDefinition', {
-      vpc: network.vpc
-    })
+    // const task_definition = new FargateTaskDefinition(this, 'FargateTaskDefinition', {
+    //   vpc: network.vpc
+    // })
 
-    const fargate_service = new FargateService(this, 'FargateService', {
-      vpc: network.vpc,
-      taskDefinition: task_definition.taskDefinition,
-      cluster: ecs_cluster.cluster
-    });
+    // const fargate_service = new FargateService(this, 'FargateService', {
+    //   vpc: network.vpc,
+    //   taskDefinition: task_definition.taskDefinition,
+    //   cluster: ecs_cluster.cluster
+    // });
 
 
 
