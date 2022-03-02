@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as rds from 'aws-cdk-lib/aws-rds';
+import { AuroraMysqlEngineVersion } from 'aws-cdk-lib/aws-rds';
 import { Construct } from 'constructs';
 
 export interface DbProps {
@@ -21,7 +22,7 @@ export class AuroraServerless extends Construct {
       vpcSubnets: {
         subnetType: ec2.SubnetType.ISOLATED,
       },
-      engine: rds.DatabaseClusterEngine.AURORA_MYSQL,
+      engine: rds.DatabaseClusterEngine.auroraMysql({ version: AuroraMysqlEngineVersion.VER_2_10_2 }),
       credentials: rds.Credentials.fromGeneratedSecret('wordpress'),
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       deletionProtection: false,
@@ -29,7 +30,7 @@ export class AuroraServerless extends Construct {
       enableDataApi: true,
     });
 
-    cluster.connections.allowFrom(props.ec2_instance, ec2.Port.tcp(5432));
+    cluster.connections.allowFrom(props.ec2_instance, ec2.Port.tcp(3306));
 
     this.db = cluster;
   }

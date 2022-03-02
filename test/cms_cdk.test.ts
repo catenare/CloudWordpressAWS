@@ -46,3 +46,14 @@ test('Aurora Settings', () => {
     });
 
 })
+
+test('EFS File System', () => {
+    const app = new cdk.App();
+    const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
+    const template = Template.fromStack(stack);
+
+    template.resourceCountIs('AWS::EFS::FileSystem', 1);
+    template.hasResourceProperties('AWS::EFS::FileSystem', {
+        PerformanceMode: "generalPurpose"
+    });
+})

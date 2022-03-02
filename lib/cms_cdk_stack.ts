@@ -4,6 +4,7 @@ import { VpcNetwork } from './vpc_network';
 import { WpSsmParameters } from './wp_ssm_parameters';
 import { AuroraServerless } from './aurora_serverless';
 import { Construct } from 'constructs';
+import { EfsFileSystem } from './efs_file_system';
 
 export class CmsCdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -14,6 +15,10 @@ export class CmsCdkStack extends Stack {
       vpc_network: network.vpc,
       ec2_instance: network.ec2Instance
     });
+
+    const file_system = new EfsFileSystem(this, 'EfsFileSystem', {
+      vpc_network: network.vpc
+    })
 
     const WpSsmParams = new WpSsmParameters(this, 'SsmParameters', {
       db: database.db
