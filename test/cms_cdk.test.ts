@@ -41,4 +41,8 @@ test('Aurora Settings', () => {
 
     template.resourceCountIs('AWS::RDS::DBCluster', 1);
 
+    template.hasResourceProperties('AWS::RDS::DBCluster', {
+        DatabaseName: "wordpress"
+    });
+
 })
