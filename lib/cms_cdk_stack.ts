@@ -31,9 +31,9 @@ export class CmsCdkStack extends Stack {
       vpc: network.vpc
     })
 
-    // const task_definition = new FargateTaskDefinition(this, 'FargateTaskDefinition', {
-    //   vpc: network.vpc
-    // })
+    const task_definition = new FargateTaskDefinition(this, 'FargateTaskDefinition', {
+      vpc: network.vpc
+    })
 
     // const fargate_service = new FargateService(this, 'FargateService', {
     //   vpc: network.vpc,

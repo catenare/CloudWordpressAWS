@@ -69,7 +69,15 @@ test('ECS and Fargate Cluster', () => {
 
     template.resourceCountIs('AWS::ECS::Cluster', 1);
 
-    // template.hasResource('AWS::ECS::Cluster', {
-    //     Metadata: Match.anyValue()
-    // });
+    // Task definition
+    template.hasResourceProperties('AWS::ECS::TaskDefinition', {
+        RequiresCompatibilities: Match.arrayWith(["FARGATE"]),
+    });
+
+    template.hasResourceProperties('AWS::IAM::Role', {
+        AssumeRolePolicyDocument: Match.objectLike({
+            Statement: Match.anyValue(),
+        }),
+    });
+
 })
