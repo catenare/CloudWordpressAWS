@@ -32,6 +32,10 @@ test('SSM Parameters', () => {
     template.hasResourceProperties('AWS::SSM::Parameter', {
         Name: Match.stringLikeRegexp('/cms/db-resource-arn')
     });
+
+    template.hasResourceProperties('AWS::SSM::Parameter', {
+        Name: Match.stringLikeRegexp('/cms/db-secret-name')
+    });
 })
 
 test('Aurora Settings', () => {
