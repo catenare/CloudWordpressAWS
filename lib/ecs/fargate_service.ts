@@ -9,6 +9,7 @@ export interface FargateServiceProps {
   cluster: ecs.Cluster;
 }
 export class FargateService extends Construct {
+  public readonly fargate_service: ecs.FargateService;
   constructor(scope: Construct, id: string, props: FargateServiceProps) {
 
     super(scope, id);
@@ -18,5 +19,7 @@ export class FargateService extends Construct {
       taskDefinition: props.taskDefinition,
       assignPublicIp: true,
     });
+
+    this.fargate_service = service;
   }
 }

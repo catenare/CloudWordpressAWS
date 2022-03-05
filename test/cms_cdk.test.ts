@@ -61,3 +61,15 @@ test('EFS File System', () => {
         PerformanceMode: "generalPurpose"
     });
 })
+
+test('ECS and Fargate Cluster', () => {
+    const app = new cdk.App();
+    const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
+    const template = Template.fromStack(stack);
+
+    template.resourceCountIs('AWS::ECS::Cluster', 1);
+
+    // template.hasResource('AWS::ECS::Cluster', {
+    //     Metadata: Match.anyValue()
+    // });
+})

@@ -5,9 +5,9 @@ import { WpSsmParameters } from './wp_ssm_parameters';
 import { AuroraServerless } from './aurora_serverless';
 import { Construct } from 'constructs';
 import { EfsFileSystem } from './efs_file_system';
-import { FargateTaskDefinition } from './fargate_task_definition';
-import { FargateCluster } from './fargate_cluster';
-import { FargateService } from './fargate_service';
+import { FargateTaskDefinition } from './ecs/fargate_task_definition';
+import { FargateCluster } from './ecs/fargate_cluster';
+import { FargateService } from './ecs/fargate_service';
 
 export class CmsCdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -27,9 +27,9 @@ export class CmsCdkStack extends Stack {
       db: database.db
     });
 
-    // const ecs_cluster = new FargateCluster(this, 'FargateCluster', {
-    //   vpc: network.vpc
-    // })
+    const ecs_cluster = new FargateCluster(this, 'FargateCluster', {
+      vpc: network.vpc
+    })
 
     // const task_definition = new FargateTaskDefinition(this, 'FargateTaskDefinition', {
     //   vpc: network.vpc
