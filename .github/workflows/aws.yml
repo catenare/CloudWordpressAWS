@@ -1,11 +1,13 @@
 name: Deploy to Amazon Container Registry
 on: 
   push:
+    branches:
+      - '!feature/**'
     paths-ignore:
       - 'lib/**'
       - 'test/**'
       - 'bin/**'
-      - 'ckd.out/**'
+      - 'cdk.out/**'
 
 jobs:
   deploy:

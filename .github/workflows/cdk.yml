@@ -1,6 +1,8 @@
 name: Test and deploy my CDK configuration for Wordpress
 on: 
   push:
+    branches:
+      - '!feature/**'
     paths:
       - 'lib/**'
       - 'test/**'

@@ -1,10 +1,13 @@
 name: Build local image for testing
 on: 
   push:
+    branches:
+      - '!feature/**'
     paths-ignore:
       - 'lib/**'
       - 'test/**'
       - 'bin/**'
+      - 'cdk.out/**'
 
 env:
   REGISTRY: ghcr.io
