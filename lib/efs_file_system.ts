@@ -23,6 +23,4 @@ export class EfsFileSystem extends Construct {
     this.efs_file_system = efs_file_system;
 
   }
-
-
 }

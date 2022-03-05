@@ -12,7 +12,11 @@ export class FargateService extends Construct {
   constructor(scope: Construct, id: string, props: FargateServiceProps) {
 
     super(scope, id);
+
+    const service = new ecs.FargateService(this, 'FargateService', {
+      cluster: props.cluster,
+      taskDefinition: props.taskDefinition,
+      assignPublicIp: true,
+    });
   }
-
-
 }

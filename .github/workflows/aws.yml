@@ -5,6 +5,7 @@ on:
       - 'lib/**'
       - 'test/**'
       - 'bin/**'
+      - 'ckd.out/**'
 
 jobs:
   deploy:

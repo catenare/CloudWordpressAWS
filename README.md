@@ -210,5 +210,3 @@ MYSQL_PASSWORD=wordpress
 ## Setting up Fargate service with configuration info
 
 ## Retrieving Secrets
-
-`aws secretsmanager get-secret-value --secret-id CmsCdkStackAuroraServerless-BMDYINtjvVRy --output yaml`
