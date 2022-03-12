@@ -95,7 +95,7 @@ test('ECS and Fargate Cluster', () => {
     // Task definition
     template.hasResourceProperties('AWS::ECS::TaskDefinition', {
         RequiresCompatibilities: Match.arrayWith(["FARGATE"]),
-        Family: "nziswano-cms-task-definition",
+        Family: "nziswano-cms",
         RuntimePlatform: Match.objectLike({
             "CpuArchitecture": "ARM64",
             "OperatingSystemFamily": "LINUX"

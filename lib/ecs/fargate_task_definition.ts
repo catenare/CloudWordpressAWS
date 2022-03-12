@@ -1,4 +1,3 @@
-import * as cdk from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
@@ -10,8 +9,6 @@ import { Construct } from 'constructs';
 export interface FargateTaskDefinitionProps {
   vpc: ec2.Vpc;
 };
-
-// # https://aws.amazon.com/blogs/containers/building-http-api-based-services-using-aws-fargate/
 
 export class FargateTaskDefinition extends Construct {
   public readonly taskDefinition: ecs.FargateTaskDefinition;
@@ -28,24 +25,27 @@ export class FargateTaskDefinition extends Construct {
 
     const taskRole = new TaskRole(this, 'TaskRole', {});
 
-    const nziswanoCmsSecGrp = new SecurityGroup(this, 'nziswanoCmsSecurityGroup', {
-      vpc: props.vpc,
-    });
-
-
     const awsTaskDefinition = {
-      family: 'nziswano-cms-task-definition',
-      image: image,
-      logging: serviceLogGroupDriver,
+      family: 'nziswano-cms',
+      memoryLimitMiB: 512,
+      cpu: 256,
       runtimePlatform: {
         operatingSystemFamily: ecs.OperatingSystemFamily.LINUX,
         cpuArchitecture: ecs.CpuArchitecture.ARM64
       },
-      cpu: 512,
-      taskrole: taskRole
+      taskRole: taskRole.taskRole
     }
 
     const taskDefinition = new ecs.FargateTaskDefinition(this, 'FargateTaskDefinition', awsTaskDefinition);
+
+    const serviceContainer = taskDefinition.addContainer('nziswano-cms-container', {
+      image: ecs.ContainerImage.fromEcrRepository(image),
+      logging: serviceLogGroupDriver.serviceLogDriver,
+    })
+
+    serviceContainer.addPortMappings({
+      containerPort: 80,
+    });
 
     this.taskDefinition = taskDefinition;
   }

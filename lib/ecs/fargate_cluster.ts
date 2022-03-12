@@ -17,6 +17,7 @@ export class FargateCluster extends Construct {
 
     const cluster = new ecs.Cluster(this, 'FargateCluster', {
       vpc: props.vpc,
+      clusterName: 'nziswano-cms-cluster',
     });
 
     this.cluster = cluster;
