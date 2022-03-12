@@ -3,7 +3,7 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import { ServiceLog } from './service_log';
-import * as iam from 'aws-cdk-lib/aws-iam';
+import { TaskRole } from './task_role';
 import { Construct } from 'constructs';
 
 export interface FargateTaskDefinitionProps {
@@ -25,11 +25,13 @@ export class FargateTaskDefinition extends Construct {
       logGroupName: '/ecs/nziswano-cms',
     });
 
-    const taskrole = new iam.Role(this, 'ecsTaskExecutionRole', {
-      assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com')
-    });
+    const taskRole = new TaskRole(this, 'TaskRole', {});
 
-    taskrole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AmazonECSTaskExecutionRolePolicy'));
+    // const taskrole = new iam.Role(this, 'ecsTaskExecutionRole', {
+    //   assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com')
+    // });
+
+    // taskrole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AmazonECSTaskExecutionRolePolicy'));
 
     const nziswanoCmsSecGrp = new ec2.SecurityGroup(this, "nziswanoCmsSecurityGroup", {
       allowAllOutbound: true,
@@ -48,7 +50,7 @@ export class FargateTaskDefinition extends Construct {
         cpuArchitecture: ecs.CpuArchitecture.ARM64
       },
       cpu: 512,
-      taskrole: taskrole
+      taskrole: taskRole
     }
 
     const taskDefinition = new ecs.FargateTaskDefinition(this, 'FargateTaskDefinition', awsTaskDefinition);

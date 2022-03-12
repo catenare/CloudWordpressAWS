@@ -73,6 +73,18 @@ test('Service log props', () => {
     });
 })
 
+test('Task role', () => {
+    const app = new cdk.App();
+    const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
+    const template = Template.fromStack(stack);
+
+    template.hasResourceProperties('AWS::IAM::Role', {
+        AssumeRolePolicyDocument: Match.objectLike({
+            Statement: Match.anyValue(),
+        }),
+    });
+})
+
 test('ECS and Fargate Cluster', () => {
     const app = new cdk.App();
     const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
@@ -89,11 +101,4 @@ test('ECS and Fargate Cluster', () => {
             "OperatingSystemFamily": "LINUX"
         })
     });
-
-    template.hasResourceProperties('AWS::IAM::Role', {
-        AssumeRolePolicyDocument: Match.objectLike({
-            Statement: Match.anyValue(),
-        }),
-    });
-
 })
