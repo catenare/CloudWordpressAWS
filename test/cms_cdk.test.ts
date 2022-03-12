@@ -62,6 +62,17 @@ test('EFS File System', () => {
     });
 })
 
+test('Service log props', () => {
+    const app = new cdk.App();
+    const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
+    const template = Template.fromStack(stack);
+
+    template.hasResourceProperties('AWS::Logs::LogGroup', {
+        RetentionInDays: 30,
+        LogGroupName: "/ecs/nziswano-cms",
+    });
+})
+
 test('ECS and Fargate Cluster', () => {
     const app = new cdk.App();
     const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
