@@ -102,3 +102,14 @@ test('ECS and Fargate Cluster', () => {
         })
     });
 })
+
+test('EC2 security group', () => {
+    const app = new cdk.App();
+    const stack = new CmsCdkStack.CmsCdkStack(app, 'CmsTestStack');
+    const template = Template.fromStack(stack);
+
+    template.hasResourceProperties('AWS::EC2::SecurityGroup', {
+        GroupName: "nziswanoCmsSecurityGroup",
+        VpcId: Match.anyValue()
+    });
+})

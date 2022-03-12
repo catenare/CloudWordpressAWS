@@ -4,6 +4,7 @@ import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import { ServiceLog } from './service_log';
 import { TaskRole } from './task_role';
+import { SecurityGroup } from './security_group';
 import { Construct } from 'constructs';
 
 export interface FargateTaskDefinitionProps {
@@ -27,19 +28,10 @@ export class FargateTaskDefinition extends Construct {
 
     const taskRole = new TaskRole(this, 'TaskRole', {});
 
-    // const taskrole = new iam.Role(this, 'ecsTaskExecutionRole', {
-    //   assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com')
-    // });
-
-    // taskrole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AmazonECSTaskExecutionRolePolicy'));
-
-    const nziswanoCmsSecGrp = new ec2.SecurityGroup(this, "nziswanoCmsSecurityGroup", {
-      allowAllOutbound: true,
-      securityGroupName: 'nziswanoCmsSecurityGroup',
-      vpc: props.vpc
+    const nziswanoCmsSecGrp = new SecurityGroup(this, 'nziswanoCmsSecurityGroup', {
+      vpc: props.vpc,
     });
 
-    nziswanoCmsSecGrp.connections.allowFromAnyIpv4(ec2.Port.tcp(80));
 
     const awsTaskDefinition = {
       family: 'nziswano-cms-task-definition',
