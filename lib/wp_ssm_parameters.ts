@@ -35,7 +35,7 @@ export class WpSsmParameters extends Construct {
       new ssm.StringParameter(this, param, {
         parameterName: param_name,
         stringValue: value.toString(),
-        description: description,
+        description: description
       });
     })
 
@@ -58,6 +58,7 @@ export class WpSsmParameters extends Construct {
 
     new ssm.StringParameter(this, 'DBResourceSecret', {
       parameterName: `/cms/db-secret-name`,
+      type: ssm.ParameterType.SECURE_STRING,
       stringValue: props.db.secret?.secretName!,
     });
   }

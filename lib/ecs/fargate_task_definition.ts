@@ -1,6 +1,7 @@
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
+import * as ssm from 'aws-cdk-lib/aws-ssm';
 import { ServiceLog } from './service_log';
 import { TaskRole } from './task_role';
 import { SecurityGroup } from './security_group';
@@ -36,7 +37,9 @@ export class FargateTaskDefinition extends Construct {
       taskRole: taskRole.taskRole,
       networkMode: ecs.NetworkMode.AWS_VPC,
       environment: {
-        WORDPRESS_DB_HOST: '',
+        WORDPRESS_DB_HOST: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/db-resource-arn'
+        }).stringValue,
         WORDPRESS_DB_USER: '',
         WORDPRESS_DB_PASSWORD: '',
         WORDPRESS_DB_NAME: '',
