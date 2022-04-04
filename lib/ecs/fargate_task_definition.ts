@@ -70,4 +70,6 @@ export class FargateTaskDefinition extends Construct {
     this.taskDefinition = taskDefinition;
   }
 
+  
+
 };
