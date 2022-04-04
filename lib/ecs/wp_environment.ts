@@ -21,13 +21,20 @@ export class WpEnvParams extends Construct {
     // WORDPRESS_DB_HOST: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
     //   parameterName: '/cms/db-resource-arn'
     // }).stringValue,
-
-    const params_list.forEach(param) => {
+    let enviroment_vars = {};
+    for (const param of params_list) {
       let param_name = `/cms/wp-${param.toLowerCase()}`;
-      param: ssm.StringParameter.fromStringParameterAttributes(this, param, {
+      enviroment_vars[param] = ssm.StringParameter.fromStringParameterAttributes(this, param, {
         parameterName: param_name
-      }).stringValue
+      }).stringValue;
+
     }
+    // const params_list.forEach(param) => {
+    //   let param_name = `/cms/wp-${param.toLowerCase()}`;
+    //   param: ssm.StringParameter.fromStringParameterAttributes(this, param, {
+    //     parameterName: param_name
+    //   }).stringValue
+    // }
 
   }
 
