@@ -45,6 +45,7 @@
     "rangav.vscode-thunder-client",
     "sebastianbille.iam-legend",
     "threadheap.serverless-ide-vscode",
-    "hediet.vscode-drawio"
+    "hediet.vscode-drawio",
+    "aaron-bond.better-comments"
   ]
 }
