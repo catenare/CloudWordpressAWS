@@ -40,19 +40,44 @@ export class FargateTaskDefinition extends Construct {
         WORDPRESS_DB_HOST: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
           parameterName: '/cms/db-resource-arn'
         }).stringValue,
-        WORDPRESS_DB_USER: '',
-        WORDPRESS_DB_PASSWORD: '',
-        WORDPRESS_DB_NAME: '',
-        AUTH_KEY: '',
-        SECURE_AUTH_KEY: '',
-        LOGGED_IN_KEY: '',
-        NONCE_KEY: '',
-        AUTH_SALT: '',
-        SECURE_AUTH_SALT: '',
-        LOGGED_IN_SALT: '',
-        NONCE_SALT: '',
-        MY_KEY: '',
-        WP_DEBUG: ''
+        WORDPRESS_DB_USER: "wordpress",
+        WORDPRESS_DB_PASSWORD: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/db-secret-name'
+        }).stringValue,
+        WORDPRESS_DB_NAME: 'wordpress',
+        AUTH_KEY: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-auth_key'
+        }).stringValue,
+        SECURE_AUTH_KEY: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-secure_auth_key'
+        }).stringValue,
+        LOGGED_IN_KEY: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-secure_auth_key'
+        }).stringValue,
+        NONCE_KEY: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-nonce_key'
+        }).stringValue,
+        AUTH_SALT: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-auth_salt'
+        }).stringValue,
+        SECURE_AUTH_SALT: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-secure_auth_salt'
+        }).stringValue,
+        LOGGED_IN_SALT: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-logged_in_salt'
+        }).stringValue,
+        NONCE_SALT: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-nonce_salt'
+        }).stringValue,
+        MY_KEY: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-my_key'
+        }).stringValue,
+        WP_DEBUG: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-debug'
+        }).stringValue,
+        WP_MULTISITE: ssm.StringParameter.fromStringParameterAttributes(this, 'DbHost', {
+          parameterName: '/cms/wp-multisite'
+        }).stringValue,
       },
     }
 
@@ -70,6 +95,6 @@ export class FargateTaskDefinition extends Construct {
     this.taskDefinition = taskDefinition;
   }
 
-  
+
 
 };
