@@ -207,6 +207,8 @@ MYSQL_PASSWORD=wordpress
 
 ## Setting up Aurora Serverless Database with MySQL
 
+- Done via CDK
+
 ## Setting up Fargate service with configuration info
 
 ## Retrieving Secrets
