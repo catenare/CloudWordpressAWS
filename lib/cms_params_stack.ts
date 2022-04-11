@@ -1,12 +1,11 @@
-import * as cdk from 'aws-cdk-lib';
+import { Stack, StackProps } from 'aws-cdk-lib';
 import * as crypto from 'crypto';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import { Construct } from 'constructs';
 
-export class WpSsmParameters extends Construct {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-
-    super(scope, id);
+export class CmsParamsStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
+    super(scope, id, props);
 
     const params_list = [
       'AUTH_KEY',

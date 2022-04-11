@@ -1,7 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { VpcNetwork } from './vpc_network';
-import { WpSsmParameters } from './wp_ssm_parameters';
 import { AuroraServerless } from './aurora_serverless';
 import { Construct } from 'constructs';
 import { EfsFileSystem } from './efs_file_system';
@@ -20,10 +19,6 @@ export class CmsCdkStack extends Stack {
     const file_system = new EfsFileSystem(this, 'EfsFileSystem', {
       vpc_network: network.vpc
     })
-
-    const WpSsmParams = new WpSsmParameters(this, 'SsmParameters', {
-      db: database.db
-    });
 
     const fargateService = new FargateService(this, 'FargateService', {
       vpc: network.vpc,

@@ -2,13 +2,14 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
+import * as rds from 'aws-cdk-lib/aws-rds';
 import { ServiceLog } from './service_log';
 import { TaskRole } from './task_role';
-import { SecurityGroup } from './security_group';
 import { Construct } from 'constructs';
 
 export interface FargateTaskDefinitionProps {
   vpc: ec2.Vpc;
+  db: rds.ServerlessCluster;
 };
 
 export class FargateTaskDefinition extends Construct {
@@ -37,13 +38,9 @@ export class FargateTaskDefinition extends Construct {
       taskRole: taskRole.taskRole,
       networkMode: ecs.NetworkMode.AWS_VPC,
       environment: {
-        WORDPRESS_DB_HOST: ssm.StringParameter.fromStringParameterAttributes(this, 'WordPressDbHost', {
-          parameterName: '/cms/db-resource-arn'
-        }).stringValue,
+        WORDPRESS_DB_HOST: props.db.clusterEndpoint.hostname,
         WORDPRESS_DB_USER: "wordpress",
-        WORDPRESS_DB_PASSWORD: ssm.StringParameter.fromStringParameterAttributes(this, 'WordPressDbPassword', {
-          parameterName: '/cms/db-secret-name'
-        }).stringValue,
+        WORDPRESS_DB_PASSWORD: props.db.secret?.secretName!,
         WORDPRESS_DB_NAME: 'wordpress',
         AUTH_KEY: ssm.StringParameter.fromStringParameterAttributes(this, 'WordPressDbName', {
           parameterName: '/cms/wp-auth_key'

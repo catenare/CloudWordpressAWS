@@ -20,7 +20,7 @@ export class AuroraServerless extends Construct {
     const cluster = new rds.ServerlessCluster(this, 'WordpressCluster', {
       vpc: props.vpc_network,
       vpcSubnets: {
-        subnetType: ec2.SubnetType.ISOLATED,
+        subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
       },
       engine: rds.DatabaseClusterEngine.auroraMysql({ version: AuroraMysqlEngineVersion.VER_2_10_2 }),
       credentials: rds.Credentials.fromGeneratedSecret('wordpress'),
