@@ -212,3 +212,7 @@ MYSQL_PASSWORD=wordpress
 ## Setting up Fargate service with configuration info
 
 ## Retrieving Secrets
+
+## Update local packages
+* `npm outdated` - list outdated packages
+* `npm update`
