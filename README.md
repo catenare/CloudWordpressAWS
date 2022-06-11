@@ -216,3 +216,7 @@ MYSQL_PASSWORD=wordpress
 ## Update local packages
 * `npm outdated` - list outdated packages
 * `npm update`
+
+
+## Using Commitizen
+* `git commit -m 'fix: update to the latest'`
