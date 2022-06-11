@@ -220,3 +220,5 @@ MYSQL_PASSWORD=wordpress
 
 ## Using Commitizen
 * `git commit -m 'fix: update to the latest'`
+
+## Trying to get my gpg key to work
