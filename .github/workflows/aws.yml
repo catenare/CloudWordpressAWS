@@ -1,8 +1,14 @@
 name: Deploy to Amazon Container Registry
-on:
+on: 
   push:
     branches:
-      - master
+      - '!feature/**'
+    paths-ignore:
+      - 'lib/**'
+      - 'test/**'
+      - 'bin/**'
+      - 'cdk.out/**'
+
 jobs:
   deploy:
     name: Deploy
@@ -17,7 +23,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        aws-region: ${{ secrets.DEV_AWS_REGION }}
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -27,13 +33,12 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        WORDPRESS_REPO: nziswano-wordpress
-        IMAGE_TAG: ${{ github.sha }}
-        IMAGE_TAG_LATEST: latest
+        ECR_REPOSITORY: nziswano-registry
+        IMAGE_TAG: wordpress_cms
       run: |
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$WORDPRESS_REPO:$IMAGE_TAG_LATEST .
-        docker push $ECR_REGISTRY/$WORDPRESS_REPO:$IMAGE_TAG_LATEST
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG_LATEST"

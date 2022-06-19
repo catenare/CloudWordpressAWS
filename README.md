@@ -115,7 +115,10 @@ docker exec -ti $UNIT curl -X PUT --data-binary @/www/config.json  \
 
 ## Github action to push to AWS Registry
 
-- Need to push generated image to AWS registry
+- **aws.yml** action file
+  - Only push to AWS when pushing to master
+- **github_registry.yml**
+  - Push to github registry on updates to wordpress config
 
 # CDK Configuration for our AWS Cloud Based WordPress instance
 
@@ -135,12 +138,91 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 - `cdk deploy` deploy this stack to your default AWS account/region
 - `cdk diff` compare deployed stack with current state
 - `cdk synth` emits the synthesized CloudFormation template
+- Testing
+  - `npm run build && cdk synth && npm run test`
+
+### Setup List
+
+- [x] ECR
+- [ ] VPC/Network - Creating a bastion host
+- [ ] System Parameters
+- [ ] Aurora Serverless Database
+- [ ] EFS File System
+- [ ] Task Definition
 
 ## AWS ECR Config
 
-- Container registry via CDK
-
-* Created the `aws-ecr-repo` stack
-* Added test to test against generated cloudformation
+- Created the `CmsRegistryStack` stack
+- Added test to test against generated cloudformation
+  - Test File: **test/cms_registry_cdk.test.ts**
+- Details:
+  - Repository name: **nziswano-registry**
+  - Image Tag: **wordpress_cms**
 
 ### Adding a github action to deploy this stack
+
+- Using `actions/setup-node@v2` to install node for running tests
+- Using `arnaskro/aws-cdk-v2-github-actions@v2.2.0` to synth and deploy
+
+## VPC
+
+- Network to access the internet
+
+### Database
+
+- Serverless
+- MySQL
+
+### SSM - Systems Manager
+
+- All settings are kept here
+
+### Fargate
+
+- Get data from ecr registry
+
+## Setup SSM parameters
+* Example below
+
+```
+WORDPRESS_DB_HOST=db:3306
+WORDPRESS_DB_USER=wordpress
+WORDPRESS_DB_PASSWORD=wordpress
+WORDPRESS_DB_NAME=wordpress
+AUTH_KEY=c3def60d6b870cb9ddfd5a37e5cc4cb2
+SECURE_AUTH_KEY=a8ee42c175b2b516d1f81ff992db030b
+LOGGED_IN_KEY=bcedc450f8481e89b1445069acdc3dd9
+NONCE_KEY=cb584e44c43ed6bd0bc2d9c7e242837d
+AUTH_SALT=22b938073218c4d8f0f10a3d36d352b8
+SECURE_AUTH_SALT=4e3baa46296d1358ea19f237ee1a5d19
+LOGGED_IN_SALT=1321b53ca4bc07e4d53fa198e59af3e7
+NONCE_SALT=283a64ff44db59568cc77dba8196046b
+MY_KEY=5931acc50be4d738a0f530dc4709d156
+WP_DEBUG=true
+WP_MULTISITE=false
+MYSQL_ROOT_PASSWORD=wordpress
+MYSQL_DATABASE=wordpress
+MYSQL_USER=wordpress
+MYSQL_PASSWORD=wordpress
+```
+
+## Setting up Aurora Serverless Database with MySQL
+
+- Done via CDK
+
+## Setting up Fargate service with configuration info
+
+## Retrieving Secrets
+
+## Update local packages
+* `npm outdated` - list outdated packages
+* `npm update`
+
+
+## Using Commitizen
+* `git commit -m 'fix: update to the latest'`
+
+## Trying to get my gpg key to work
+
+## Deploying a stack
+* `cdk deploy CmsParamsStack`
