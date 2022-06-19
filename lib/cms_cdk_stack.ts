@@ -22,6 +22,7 @@ export class CmsCdkStack extends Stack {
 
     const fargateService = new FargateService(this, 'FargateService', {
       vpc: network.vpc,
+      db: database.db
     });
 
 

@@ -182,6 +182,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 - Get data from ecr registry
 
 ## Setup SSM parameters
+* Example below
 
 ```
 WORDPRESS_DB_HOST=db:3306
@@ -222,3 +223,6 @@ MYSQL_PASSWORD=wordpress
 * `git commit -m 'fix: update to the latest'`
 
 ## Trying to get my gpg key to work
+
+## Deploying a stack
+* `cdk deploy CmsParamsStack`

@@ -23,7 +23,8 @@ export class FargateService extends Construct {
     });
 
     const fargateTaskDefinition = new FargateTaskDefinition(this, 'FargateTaskDefinition', {
-      vpc: props.vpc
+      vpc: props.vpc,
+      db: fargateCluster.db
     });
 
     const service = new ecs.FargateService(this, 'FargateService', {

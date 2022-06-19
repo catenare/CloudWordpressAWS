@@ -9,9 +9,9 @@ const app = new cdk.App();
 new CmsRegistryStack(app, 'CmsRegistryStack', {
   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
 });
-new CmsCdkStack(app, 'CmsCdkStack', {
-  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
-});
+// new CmsCdkStack(app, 'CmsCdkStack', {
+//   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+// });
 new CmsParamsStack(app, 'CmsParamsStack', {
   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
 });
